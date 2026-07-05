@@ -25,22 +25,20 @@ Each run produces AltaCV-styled PDFs (`{Name}-{Role}-resume.pdf`) and optional c
 
 ## Get started
 
-Step-by-step guide: **[SETUP.md](SETUP.md)**.
+More detail: **[SETUP.md](SETUP.md)**.
 
-1. **Install PDF tools once** (macOS + Homebrew): BasicTeX and pandoc. See [SETUP.md §1](SETUP.md#1-prerequisites-once-per-machine), or ask your agent to run `./scripts/setup.sh`.
-
-2. **Clone and open the repo** in Cursor or Claude Code:
+1. **Clone and open the repo** in Cursor or Claude Code:
 
    ```bash
    git clone https://github.com/daniel-salter-ds/apply-with-agents.git
    cd apply-with-agents
    ```
 
-3. **Run setup in chat:** type **`/setup`**. The agent asks for existing CVs, a short search brief (target roles, geography, sector), and a short interview. It writes **`master.md`** (your experience library) and **`config/profile.yaml`** (contact details). Both stay on your machine and are not committed.
+2. **Run setup in chat:** type **`/setup`**. The agent checks your machine can build PDFs (and walks you through installing anything missing), then asks for existing CVs, a short search brief, and a short interview. It writes **`master.md`** (your experience library) and **`config/profile.yaml`** (contact details).
 
-4. **Apply for a role:** paste a job link, type **`/resume`**. The agent reads the posting, asks tailoring questions, drafts your CV, and builds a PDF.
+3. **Apply for a role:** paste a job link, type **`/resume`**. The agent reads the posting, asks tailoring questions, drafts your CV, and builds a PDF.
 
-5. **Cover letter (optional):** type **`/cover-letter`** for the same application. Review the research summary, pick a voice, get letter variants and an optional PDF.
+4. **Cover letter (optional):** type **`/cover-letter`** for the same application. Review the research summary, pick a voice, get letter variants and an optional PDF.
 
 ```text
 /setup, then /resume for each job, then /cover-letter if you want one.
@@ -110,12 +108,12 @@ Details: [BUILD.md](BUILD.md), [DESIGN.md](DESIGN.md).
 | Problem | What to do |
 |---------|------------|
 | Agent says run **`/setup`** | `master.md` or `config/profile.yaml` missing |
-| Agent asks about PDF tools | Install BasicTeX + pandoc ([SETUP.md](SETUP.md)) or `./scripts/setup.sh` |
+| Agent asks about PDF tools | Stay in chat — **`/setup`** will guide you through installing what is missing ([SETUP.md](SETUP.md)) |
 | Cover letter check fails | Ask the agent to fix the draft, or `./scripts/check-cover-letter.sh roles/…` |
-| Symlinks missing after clone (Windows) | [SETUP.md §2](SETUP.md#2-clone-and-open-in-your-agent) |
+| Symlinks missing after clone (Windows) | [SETUP.md §1](SETUP.md#1-clone-and-open-in-your-agent) |
 
 ## Requirements
 
-- **OS:** macOS (Homebrew, BasicTeX). Linux works with adapted paths.
-- **Tools:** [pandoc](https://pandoc.org), TeX Live (`latexmk`, `xelatex`) via `./scripts/setup.sh`
+- **OS:** macOS with Homebrew is the tested path. Linux works with adapted paths.
+- **Tools:** pandoc and TeX Live — installed during **`/setup`** if missing (see [SETUP.md](SETUP.md) if you prefer manual install)
 - **Agent:** Cursor, Claude Code, or compatible Agent Skills host
