@@ -18,6 +18,10 @@ variants in `roles/<company-slug>/<role-slug>/` → optional PDF via
 
 If `config/profile.yaml` or `master.md` is missing — route to **`/setup`** first (before `/resume`).
 
+## User communication
+
+Follow [../../references/audience-comms.md](../../references/audience-comms.md).
+
 ## When to use
 
 - User invokes **`/cover-letter`** for an existing role folder

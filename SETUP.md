@@ -40,11 +40,7 @@ You do not need to understand folder layout — the agent handles it.
 
 ## 4. Apply for a job — `/resume`
 
-Paste a job URL or description. Invoke **`/resume`**. The agent scaffolds `roles/<company>/<role>/`, tailors `resume.md`, and builds a PDF:
-
-```bash
-./scripts/build.sh roles/<company>/<role>
-```
+Paste a job URL or description. Invoke **`/resume`**. The agent reads the posting, asks tailoring questions, drafts your CV, and produces a submission PDF — you do not need to run build commands yourself.
 
 ## 5. Cover letter — `/cover-letter`
 

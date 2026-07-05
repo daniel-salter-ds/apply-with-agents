@@ -4,6 +4,8 @@
 
 Run `./scripts/setup.sh` (or verify pandoc + latexmk on PATH). Fail early with README prerequisites if missing.
 
+Do **not** paste script output or manual scaffold commands to the user — see [../../references/audience-comms.md](../../references/audience-comms.md). Report toolchain status in plain language unless `audience.technical_level` is already `technical`.
+
 ## 2. Existing materials
 
 Ask the user to upload or paste **all existing CVs, bios, LinkedIn exports, portfolio pages** — as many as they have.
@@ -48,6 +50,7 @@ Write **`config/profile.yaml`** from interview (copy shape from `config/profile.
 
 - name, email, phone, phone_e164, home_country, home_base
 - linkedin, website (optional), github (optional)
+- **`audience.technical_level`** — infer from CV + interview ([../../references/audience-comms.md](../../references/audience-comms.md)): set `technical` only when background clearly involves daily CLI/tooling; otherwise `non_technical`
 - `setup_complete: true`
 
 ## 7. Verify (silent)
@@ -61,4 +64,6 @@ Report pass/fail only. User does not need to open example folders.
 
 ## 8. Done
 
-Tell the user to run **`/resume`** with their first job URL. Mention **`/master`** for later updates.
+Close using [../../references/audience-comms.md](../../references/audience-comms.md) — **skills only** for `non_technical` users (`/resume`, `/cover-letter`, `/master`). Never end setup with “scaffold manually” or `./scripts/new-role.sh` unless `audience.technical_level: technical`.
+
+Confirm briefly what was saved (experience library, contact details, job-search preferences) without file paths unless the user is technical.

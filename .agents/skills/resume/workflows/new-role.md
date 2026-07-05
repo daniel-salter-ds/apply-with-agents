@@ -99,4 +99,4 @@ Read [layout.md](./layout.md). Check page count (default budget: two pages), fin
 
 Summarise changes (Profile themes, reordered roles, skills emphasis). Ask if another pass.
 
-After the user approves the CV, they may run **`/cover-letter`** for the same role (requires `resume.md`).
+After the user approves the CV, they may run **`/cover-letter`** for the same role (requires `resume.md`). Close with [audience-comms.md](../../../references/audience-comms.md) — invite `/cover-letter` in plain language for non-technical users.

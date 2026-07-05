@@ -12,4 +12,8 @@ candidate:
   github: ""    # optional — omit if not relevant
   apply_internationally: false
 
+# Inferred during /setup — drives plain-language vs command-heavy chat (see .agents/references/audience-comms.md)
+audience:
+  technical_level: non_technical  # non_technical | technical
+
 setup_complete: false

@@ -16,6 +16,10 @@ Updates **`master.md`** — sole facts source for `/resume` and `/cover-letter`.
 - `config/profile.yaml` with `setup_complete: true`
 - If missing → route to **`/setup`**
 
+## User communication
+
+Follow [../../references/audience-comms.md](../../references/audience-comms.md).
+
 ## Route to workflow
 
 | User intent | Read |

@@ -6,6 +6,13 @@ Agentic resume and cover-letter pipeline. Markdown in role folders → AltaCV PD
 
 If `config/profile.yaml` or `master.md` is missing, route the user to **`/setup`** before `/resume` or `/cover-letter`.
 
+## User communication
+
+Read `audience.technical_level` from `config/profile.yaml` and follow
+[.agents/references/audience-comms.md](.agents/references/audience-comms.md).
+Default to plain language and **skills** (`/resume`, etc.) — not shell commands —
+unless the user is clearly technical.
+
 ## Build commands
 
 ```bash

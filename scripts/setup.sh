@@ -65,8 +65,7 @@ ensure_symlink() {
 ensure_symlink "$REPO_ROOT/.cursor/agents" "../.agents/agents"
 ensure_symlink "$REPO_ROOT/.claude/agents" "../.agents/agents"
 
-echo "Ready. Scaffold a role with: ./scripts/new-role.sh <company-slug> <role-slug>"
-echo "Build a role CV with: ./scripts/build.sh roles/<company-slug>/<role-slug>"
+echo "Toolchain ready."
 
 # Smoke test e2e examples when render toolchain is available
 if [[ -f "$REPO_ROOT/examples/e2e/software-engineer/resume.md" ]]; then

@@ -30,6 +30,11 @@ Repo-local AltaCV pipeline: markdown in `roles/<company-slug>/<role-slug>/` → 
 
 If `config/profile.yaml` or `master.md` is missing, or `setup_complete` is not true in profile — stop and tell the user to run **`/setup`** first.
 
+## User communication
+
+Follow [../../references/audience-comms.md](../../references/audience-comms.md). Read
+`audience.technical_level` from profile; default **`non_technical`** when missing.
+
 ## Application scope (mandatory)
 
 Each chat is for **one** role folder. Enforced by `roles/AGENTS.md` and per-role `AGENTS.md`.
@@ -78,6 +83,12 @@ If intent is ambiguous, ask once then route.
 - **Master sync:** user-stated facts missing from `master.md` → update via **`/master`** or master-sync ([references/master-sync.md](references/master-sync.md))
 
 ## Opening message (new application)
+
+**Non-technical** (`audience.technical_level: non_technical`):
+
+> I'll read the job posting, ask a few tailoring questions, then draft your CV and build a PDF you can submit. Does that work?
+
+**Technical** — may add slug proposal:
 
 > I'll scaffold `roles/<company-slug>/<role-slug>/`, fetch the job spec, ask tailoring questions, then draft `resume.md` from `master.md` and build the PDF. Slug proposal: `<company-slug>/<role-slug>` — OK?
 

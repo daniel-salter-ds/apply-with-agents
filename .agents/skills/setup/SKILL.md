@@ -16,6 +16,12 @@ First-run onboarding. Creates `config/profile.yaml` and `master.md` from user ma
 
 If `config/profile.yaml` exists with `setup_complete: true` and `master.md` exists — ask whether to re-run setup or route to `/master` for updates.
 
+## Communication
+
+Follow [../../references/audience-comms.md](../../references/audience-comms.md). Infer
+`audience.technical_level` during the profile step; default **`non_technical`** when
+unsure. Do not relay raw `setup.sh` output or shell commands to non-technical users.
+
 ## Route to workflow
 
 Read [workflows/new-setup.md](workflows/new-setup.md).
@@ -25,6 +31,7 @@ Read [workflows/new-setup.md](workflows/new-setup.md).
 | File | Purpose |
 |------|---------|
 | `config/profile.yaml` | Contact, country, phone, links (from profile.example.yaml) |
+| `audience.technical_level` | In profile — plain vs command-heavy chat ([../../references/audience-comms.md](../../references/audience-comms.md)) |
 | `config/target-role-research.md` | Role-type research from search brief |
 | `master.md` | Canonical experience library |
 | `inputs/setup/` | Uploaded CVs (gitignored) |
