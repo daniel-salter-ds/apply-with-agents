@@ -1,0 +1,83 @@
+# Personal / per-user (written by /setup)
+master.md
+config/profile.yaml
+config/target-role-research.md
+inputs/**
+
+# Legacy personal dev docs
+.cursor/docs/
+.cursor/plans/
+
+# macOS
+.DS_Store
+
+# Per-application role folders (keep _template only)
+roles/**
+!roles/_template/
+!roles/_template/**
+!roles/README.md
+!roles/AGENTS.md
+!roles/CLAUDE.md
+
+# Examples — track markdown; ignore build artefacts
+examples/**/*.pdf
+examples/**/cover-letter-*.tex
+examples/**/*.tex
+examples/**/*.aux
+examples/**/*.log
+examples/**/*.bcf
+examples/**/*.bbl
+examples/**/*.blg
+examples/**/*.fls
+examples/**/*.fdb_latexmk
+examples/**/*.out
+examples/**/*.run.xml
+examples/**/*.xdv
+
+# Generated per-role LaTeX and build artefacts (redundant with roles/**; kept explicit)
+roles/**/cover-letter-*.tex
+roles/**/cover-letter-*.pdf
+roles/**/*-cover-letter*.pdf
+roles/**/resume.tex
+roles/**/resume.pdf
+roles/**/*-resume.pdf
+roles/**/*.aux
+roles/**/*.log
+roles/**/*.bcf
+roles/**/*.bbl
+roles/**/*.blg
+roles/**/*.fls
+roles/**/*.fdb_latexmk
+roles/**/*.out
+roles/**/*.run.xml
+roles/**/*.xdv
+
+# Render build artefacts
+render/resume.tex
+render/*.pdf
+render/*.aux
+render/*.log
+render/*.bcf
+render/*.bbl
+render/*.blg
+render/*.fls
+render/*.fdb_latexmk
+
+# LaTeX build artefacts (global)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.xdv
+
+# Repomix
+repomix-*.xml
+
+# Spike artefacts
+_spike/

@@ -1,0 +1,3 @@
+from: markdown+yaml_metadata_block+raw_attribute
+standalone: true
+shift-heading-level-by: -1

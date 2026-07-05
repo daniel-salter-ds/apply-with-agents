@@ -1,0 +1,89 @@
+# Mechanical banned patterns for cover-letter self-check.
+# Parsed by template/check-cover-letter.sh — edit sections here only.
+#
+# [HARD]     — any match fails (zero tolerance)
+# [SOFT]     — fail if total matches across all soft patterns > 1
+#              (one mild hit OK; two+ hits or two+ distinct soft words fail)
+# [PHRASE]   — same as HARD (stock phrases / closers)
+
+[HARD]
+passionate
+passion
+dynamic
+self-starter
+results-oriented
+synergy
+team player
+go-getter
+leverage
+utilize
+delve
+streamline
+harness
+foster
+elevate
+spearhead
+navigate
+landscape
+tapestry
+ecosystem
+paradigm
+unlock
+orchestrate
+
+[SOFT]
+robust
+nuanced
+multifaceted
+pivotal
+transformative
+innovative
+seamless
+cutting-edge
+realm
+certainly
+arguably
+fundamentally
+deeply
+quietly
+remarkably
+notably
+importantly
+interestingly
+embark
+tackle
+empower
+
+[PHRASE]
+in today's fast-paced world
+i am confident that
+think outside the box
+hit the ground running
+i hope to hear from you
+i look forward to hearing from you
+look forward to the opportunity
+please do not hesitate to contact me
+available for a call
+happy to schedule a call
+let's connect
+i am writing to express my interest
+i am excited about the opportunity
+i believe i would be a great fit
+i am a hard-working
+throughout my career, i have honed
+proven track record
+ideal candidate
+continuous improvement
+strategic alignment
+operational excellence
+organizational efficiency
+solution development
+let's break this down
+let's unpack this
+here's the kicker
+here's the thing
+imagine a world where
+think of it as
+the truth is simple
+in conclusion
+in this letter i will

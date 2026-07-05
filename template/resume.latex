@@ -1,0 +1,53 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\PassOptionsToPackage{lowtilde}{url}
+\documentclass[11pt,a4paper,ragged2e]{altacv}
+\geometry{left=1.5cm,right=1.5cm,top=1.25cm,bottom=1.25cm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[default]{lato}
+
+\definecolor{IFBlue}{HTML}{0F6688}
+\definecolor{IFDarkBlue}{HTML}{00425C}
+\definecolor{IFMediumBlue}{HTML}{17739A}
+\definecolor{IFLightBlue}{HTML}{228FBD}
+
+\definecolor{IFGrey}{HTML}{6D6E71}
+\definecolor{IFDarkGrey}{HTML}{231F20}
+\definecolor{IFMediumGrey}{HTML}{4D4D4F}
+\definecolor{IFLightGrey}{HTML}{808285}
+
+\colorlet{heading}{IFBlue}
+\colorlet{accent}{IFLightBlue}
+\colorlet{emphasis}{IFMediumGrey}
+\colorlet{body}{IFGrey}
+
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\let\altacvoldsection\section
+\renewcommand{\section}[1]{\cvsection{#1}}
+\let\altacvsubsection\subsection
+\renewcommand{\subsection}[1]{\cvsubsection{#1}}
+
+\begin{document}
+\name{$if(name)$$name$$else$Your Name$endif$}
+\tagline{$if(tagline)$$tagline$$else$$endif$}
+\personalinfo{%
+$if(email)$  \email{$email$}$endif$
+$if(phone)$  \phone{$phone$}$endif$
+$if(location)$  \location{$location$}$endif$
+  \par
+$if(linkedin)$  \linkedin{\url{$linkedin$}}$endif$
+$if(github)$  \github{\url{$github$}}$endif$
+}
+\begin{fullwidth}
+\makecvheader
+\end{fullwidth}
+
+$body$
+
+\end{document}
