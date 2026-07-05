@@ -1,6 +1,8 @@
 # Apply with agents
 
-Tailor a CV and cover letter for each job application. Paste your experience once; an agent researches each role, drafts markdown, and builds AltaCV PDFs you can submit.
+Tailor a resume and cover letter for each job application. Paste your experience once; an agent researches each role, drafts markdown, and builds AltaCV PDFs you can submit.
+
+Submission-ready PDFs in a polished AltaCV layout — edited in chat, built locally. 
 
 Works with [Cursor](https://cursor.com), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), or any tool that reads [Agent Skills](https://agentskills.io).
 
@@ -12,12 +14,18 @@ Works with [Cursor](https://cursor.com), [Claude Code](https://docs.anthropic.co
 
 A local repo the agent maintains: one folder per application, one experience library, markdown in and PDFs out. Not a drag-and-drop resume site.
 
+## Examples
+
+See [`examples/e2e/`](examples/e2e/) for fictional resume + cover letter examples:
+
+![Example AltaCV output — fictional profile](docs/images/software-engineer-example.png)
+
 ## What you can do
 
 | Goal | Type in agent chat |
 |------|---------------------|
 | First-time setup | **`/setup`** |
-| CV for a specific job | **`/resume`** (paste the job URL or description) |
+| Resume for a specific job | **`/resume`** (paste the job URL or description) |
 | Cover letter variants | **`/cover-letter`** (after `/resume` for the same role) |
 | Update your experience library | **`/master`** |
 
@@ -34,16 +42,11 @@ More detail: **[SETUP.md](SETUP.md)**.
    cd apply-with-agents
    ```
 
-2. **Run setup in chat:** type **`/setup`**. The agent checks your machine can build PDFs (and walks you through installing anything missing), then asks for existing CVs, a short search brief, and a short interview. It writes **`master.md`** (your experience library) and **`config/profile.yaml`** (contact details).
+2. **Agent handles setup:** type **`/setup`**. The agent checks your machine can build PDFs (and walks you through installing anything missing), then asks for existing resumes, a short search brief, and a short interview. It writes **`master.md`** (your experience library) and **`config/profile.yaml`** (contact details).
 
-3. **Apply for a role:** paste a job link, type **`/resume`**. The agent reads the posting, asks tailoring questions, drafts your CV, and builds a PDF.
+3. **Tailor a resume:** paste a job link, type **`/resume`**. The agent reads the posting, asks tailoring questions, drafts your resume, and builds a PDF.
 
-4. **Cover letter (optional):** type **`/cover-letter`** for the same application. Review the research summary, pick a voice, get letter variants and an optional PDF.
-
-```text
-/setup, then /resume for each job, then /cover-letter if you want one.
-Use /master when your experience changes.
-```
+4. **Research + tailor a cover letter:** type **`/cover-letter`** for the same application. Review the research summary, pick a voice, get letter variants and an optional PDF.
 
 ## Skills
 
@@ -52,13 +55,13 @@ Skills live in [`.agents/skills/`](.agents/skills/). Entry point: [AGENTS.md](AG
 | Skill | When |
 |-------|------|
 | `/setup` | First run; missing `master.md` or profile |
-| `/master` | Update your master CV with a missing role, corrected dates, forgotten metrics, etc... |
+| `/master` | Update your master resume with a missing role, corrected dates, forgotten metrics, etc... |
 | `/resume` | Build tailored resume for a new job via posting URL or text, or refresh an existing resume |
 | `/cover-letter` | Write tailored cover letter after `resume.md` exists for that role |
 
 ## How it works
 
-- **`master.md`**: employers, dates, metrics. Tailored CVs trim from here.
+- **`master.md`**: employers, dates, metrics. Tailored resumes trim from here.
 - **`roles/<company>/<role>/`**: one folder per application (`resume.md`, `job-spec.md`, notes, cover letters). Your applications are gitignored.
 - **`scripts/` + `render/`**: pandoc and AltaCV turn markdown into PDF. The agent runs these.
 - **`config/`**: locale, page defaults, cover-letter limits, banned phrases.
@@ -70,7 +73,7 @@ Format examples (fictional): [`software-engineer`](examples/e2e/software-enginee
 ```text
 config/                 # shared defaults; profile.yaml is yours (gitignored)
 master.template.md      # skeleton; /setup writes master.md (gitignored)
-examples/e2e/           # synthetic CV + cover letter examples
+examples/e2e/           # synthetic resume + cover letter examples
 roles/_template/        # scaffold for new applications
 scripts/                # build, setup, checks
 render/                 # AltaCV LaTeX + pandoc templates
@@ -87,7 +90,7 @@ If you use a terminal, the same pipeline is available directly:
 ```bash
 ./scripts/setup.sh                                    # once per machine
 ./scripts/new-role.sh acme staff-backend --url "…"   # scaffold application folder
-./scripts/build.sh roles/acme/staff-backend           # CV PDF
+./scripts/build.sh roles/acme/staff-backend           # resume PDF
 ./scripts/cover-letter-build.sh roles/acme/staff-backend professional
 ./scripts/check-cover-letter.sh roles/acme/staff-backend
 ```
