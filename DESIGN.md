@@ -28,7 +28,7 @@ flowchart LR
     MD["roles/company/role/resume.md"]
     YAML[YAML front matter]
   end
-  subgraph template [template/]
+  subgraph render_layer [render/]
     TPL[resume.latex]
     LUA[job.lua]
     CLS[altacv.cls]
@@ -79,18 +79,21 @@ flowchart LR
 
 | Path | Responsibility |
 |------|----------------|
-| `template/` | Immutable styling and build logic — shared across all roles |
+| `render/` | LaTeX class, pandoc templates, Lua filters |
+| `scripts/` | Build orchestration and checks |
 | `roles/<company-slug>/<role-slug>/` | Role folder: `resume.md` (build input) plus optional context and cover-letter artefacts |
 | `roles/README.md` | Naming, layout, and scale guidance for role folders |
-| `master.md` | Canonical content library; not a build input |
+| `config/` | User-editable settings (profile, locale, defaults) |
+| `master.md` | Canonical content library; not a build input (created by `/setup`) |
+| `examples/e2e/` | Synthetic format examples for agents |
 
 ## Build pipeline
 
-1. **`template/build.sh <role-dir>`** validates `resume.md` exists.
-2. **Pandoc** reads markdown + YAML, applies `job.lua`, emits `role-dir/resume.tex` using `template/resume.latex`.
+1. **`scripts/build.sh <role-dir>`** validates `resume.md` exists.
+2. **Pandoc** reads markdown + YAML, applies `job.lua`, emits `role-dir/resume.tex` using `render/resume.latex`.
 3. **`TEXINPUTS`** includes `template/` so `\documentclass{altacv}` resolves.
 4. **`latexmk -pdf`** compiles `resume.tex` → `resume.pdf` (may invoke biber once via the class).
-5. **`template/output-name.sh`** reads YAML and copies to `{Name-Slug}-{Role-Label}-resume.pdf`. Role label: `output_role` → `tagline` → role directory slug. Company slug is excluded.
+5. **`scripts/output-name.sh`** reads YAML and copies to `{Name-Slug}-{Role-Label}-resume.pdf`. Role label: `output_role` → `tagline` → role directory slug. Company slug is excluded.
 
 Pandoc flags (fixed):
 
@@ -177,22 +180,20 @@ Converts Experience job headers to AltaCV `\cvevent` blocks. See `.cursor/plans/
 
 | Pipeline | Input | Style | Status |
 |----------|-------|-------|--------|
-| `template/build.sh` | `roles/**/resume.md` | AltaCV single column | **Primary** |
-| `template/cover-letter-build.sh` | `roles/**/cover-letter-*.md` | Lato via `cover-letter.latex` | **Cover letters** |
+| `scripts/build.sh` | `roles/**/resume.md` | AltaCV single column | **Primary** |
+| `scripts/cover-letter-build.sh` | `roles/**/cover-letter-*.md` | Lato via `cover-letter.latex` | **Cover letters** |
 
 ## Extension points
 
-- **New role:** add `roles/<company-slug>/<role-slug>/resume.md` via `new-role.sh`.
+- **New role:** `./scripts/new-role.sh` or `/resume`
 - **Cover letter:** invoke `/cover-letter` after `/resume`; optional PDF via `cover-letter-build.sh` and `output-name.sh --cover-letter`.
-- **Style change:** edit `template/resume.latex` and possibly `altacv.cls` — rebuild all roles.
-- **New markdown pattern:** extend `template/job.lua` or add filters; update README authoring rules.
-- **CI:** run `./template/build.sh roles/<company>/<role>` on PR (optional).
+- **Style change:** edit `render/resume.latex` and possibly `altacv.cls` — rebuild all roles.
+- **New markdown pattern:** extend `render/job.lua` or add filters; update README authoring rules.
+- **CI:** run `./scripts/build.sh roles/<company>/<role>` on PR (optional).
 
 ## Agent workflow
 
-Coding agents should follow `.cursor/skills/resume/SKILL.md` to scaffold roles, capture job specs, interview the user, and tailor `resume.md` from `master.md`. Compilation is always `./template/build.sh roles/<company-slug>/<role-slug>`.
-
-For cover letters, follow `.cursor/skills/cover-letter/SKILL.md` **after** a tailored `resume.md` exists. Validation gate: missing `resume.md` or `job-spec.md` → stop and route to `/resume`.
+Run **`/setup`** first. Then `.agents/skills/resume/SKILL.md` and `.agents/skills/cover-letter/SKILL.md`. Compilation: `./scripts/build.sh roles/<company-slug>/<role-slug>`.
 
 ## Open issues / future work
 

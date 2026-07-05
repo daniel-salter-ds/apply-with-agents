@@ -8,13 +8,13 @@ Both pipelines read from `roles/<company-slug>/<role-slug>/` and write outputs i
 
 | Pipeline | Entry script | Build input | Engine | Submission PDF |
 |----------|--------------|-------------|--------|----------------|
-| **Resume (CV)** | `template/build.sh` | `resume.md` | pandoc → LaTeX → `latexmk` | `{Name}-{Role}-resume.pdf` |
-| **Cover letter** | `template/cover-letter-build.sh` | `cover-letter-<voice>.md` | pandoc (direct PDF) | `{Name}-{Role}-cover-letter.pdf` |
+| **Resume (CV)** | `scripts/build.sh` | `resume.md` | pandoc → LaTeX → `latexmk` | `{Name}-{Role}-resume.pdf` |
+| **Cover letter** | `scripts/cover-letter-build.sh` | `cover-letter-<voice>.md` | pandoc (direct PDF) | `{Name}-{Role}-cover-letter.pdf` |
 
 Each pipeline produces two PDFs per build:
 
 1. **Build artefact** — fixed local name (`resume.pdf` or `cover-letter-<voice>.pdf`) used by the toolchain.
-2. **Submission copy** — human-readable filename derived from YAML in sibling `resume.md` via `template/output-name.sh`.
+2. **Submission copy** — human-readable filename derived from YAML in sibling `resume.md` via `scripts/output-name.sh`.
 
 Generated PDFs and LaTeX intermediates are [gitignored](.gitignore) by default.
 
@@ -50,7 +50,7 @@ flowchart TB
 brew install --cask basictex
 brew install pandoc
 export PATH="/Library/TeX/texbin:$PATH"   # add to ~/.zshrc
-./template/setup.sh                        # once per machine
+./scripts/setup.sh                        # once per machine
 ```
 
 | Tool | Resume | Cover letter |
@@ -73,7 +73,7 @@ roles/<company-slug>/<role-slug>/
 
 **Cover-letter build** requires both `resume.md` (for submission naming) and `cover-letter-<voice>.md` where `<voice>` is `professional`, `conversational`, or `bold`.
 
-Authoring and agent workflows (`/resume`, `/cover-letter`) are documented in [`.cursor/skills/resume/SKILL.md`](.cursor/skills/resume/SKILL.md) and [`.cursor/skills/cover-letter/SKILL.md`](.cursor/skills/cover-letter/SKILL.md). This document covers compilation only.
+Authoring and agent workflows (`/resume`, `/cover-letter`) are documented in [`.agents/skills/resume/SKILL.md`](.agents/skills/resume/SKILL.md) and [`.agents/skills/cover-letter/SKILL.md`](.agents/skills/cover-letter/SKILL.md). This document covers compilation only.
 
 ---
 
@@ -82,16 +82,16 @@ Authoring and agent workflows (`/resume`, `/cover-letter`) are documented in [`.
 ### Command
 
 ```bash
-./template/build.sh roles/<company-slug>/<role-slug>
-./template/build.sh roles/<company-slug>/<role-slug> --clean   # remove artefacts only
+./scripts/build.sh roles/<company-slug>/<role-slug>
+./scripts/build.sh roles/<company-slug>/<role-slug> --clean   # remove artefacts only
 ```
 
 ### End-to-end steps
 
-`template/build.sh` runs the following in the role directory:
+`scripts/build.sh` runs the following in the role directory:
 
 1. **Validate** — exit if `resume.md` is missing.
-2. **Environment** — set `PATH` to include `/Library/TeX/texbin`; prepend `template/` to `TEXINPUTS` so `\documentclass{altacv}` resolves to `template/altacv.cls`.
+2. **Environment** — set `PATH` to include `/Library/TeX/texbin`; prepend `template/` to `TEXINPUTS` so `\documentclass{altacv}` resolves to `render/altacv.cls`.
 3. **Pandoc (markdown → LaTeX)** — emit `resume.tex` in the role folder:
 
    ```bash
@@ -127,8 +127,8 @@ LaTeX auxiliary files (`.aux`, `.log`, `.bcf`, etc.) are also written and gitign
 `--clean` removes LaTeX artefacts and `*-resume.pdf` from the role folder without rebuilding. Use when PDF content disagrees with `resume.md`:
 
 ```bash
-./template/build.sh roles/<company-slug>/<role-slug> --clean
-./template/build.sh roles/<company-slug>/<role-slug>
+./scripts/build.sh roles/<company-slug>/<role-slug> --clean
+./scripts/build.sh roles/<company-slug>/<role-slug>
 ```
 
 ---
@@ -138,7 +138,7 @@ LaTeX auxiliary files (`.aux`, `.log`, `.bcf`, etc.) are also written and gitign
 ### Command
 
 ```bash
-./template/cover-letter-build.sh roles/<company-slug>/<role-slug> <voice>
+./scripts/cover-letter-build.sh roles/<company-slug>/<role-slug> <voice>
 ```
 
 `<voice>` selects the source markdown: `professional`, `conversational`, or `bold`.
@@ -146,12 +146,12 @@ LaTeX auxiliary files (`.aux`, `.log`, `.bcf`, etc.) are also written and gitign
 Example:
 
 ```bash
-./template/cover-letter-build.sh roles/ing/senior-ai-engineer-agentic-ai professional
+./scripts/cover-letter-build.sh roles/ing/senior-ai-engineer-agentic-ai professional
 ```
 
 ### End-to-end steps
 
-`template/cover-letter-build.sh` runs the following in the role directory:
+`scripts/cover-letter-build.sh` runs the following in the role directory:
 
 1. **Validate voice** — must be `professional`, `conversational`, or `bold`.
 2. **Validate inputs** — `cover-letter-<voice>.md` and `resume.md` must exist.
@@ -161,13 +161,13 @@ Example:
    ```bash
    pandoc cover-letter-<voice>.md \
      -o cover-letter-<voice>.pdf \
-     --template=template/cover-letter.latex \
+     --template=render/cover-letter.latex \
      --pdf-engine=pdflatex \
      -V name=… -V email=… -V phone=… -V location=… -V letter_date=… \
      [--standalone]
    ```
 
-   Template: Lato 11pt, 1 inch margins, IFBlue name, `\pagestyle{empty}` (no page numbers). Header and date render before letter body. See [`.cursor/skills/cover-letter/references/pdf-layout.md`](.cursor/skills/cover-letter/references/pdf-layout.md).
+   Template: Lato 11pt, 1 inch margins, IFBlue name, `\pagestyle{empty}` (no page numbers). Header and date render before letter body. See [`.agents/skills/cover-letter/references/pdf-layout.md`](.agents/skills/cover-letter/references/pdf-layout.md).
 
 5. **Submission copy** — call `output-name.sh --cover-letter`, remove any existing `*-cover-letter*.pdf` in the role folder, copy the voice artefact to the named submission file.
 
@@ -193,8 +193,8 @@ There is no `--clean` flag. Re-run the build script after editing markdown. Pand
 Both pipelines derive submission filenames from YAML in the role's `resume.md`:
 
 ```bash
-./template/output-name.sh roles/<company-slug>/<role-slug>              # resume
-./template/output-name.sh roles/<company-slug>/<role-slug> --cover-letter
+./scripts/output-name.sh roles/<company-slug>/<role-slug>              # resume
+./scripts/output-name.sh roles/<company-slug>/<role-slug> --cover-letter
 ```
 
 ### YAML fields
@@ -215,14 +215,14 @@ Both pipelines derive submission filenames from YAML in the role's `resume.md`:
 YAML:
 
 ```yaml
-name: Daniel Salter
-tagline: Senior AI Engineer - Agentic AI
+name: Alex Chen
+tagline: Senior Software Engineer
 ```
 
 Outputs:
 
-- Resume: `Daniel-Salter-Senior-AI-Engineer-Agentic-AI-resume.pdf`
-- Cover letter: `Daniel-Salter-Senior-AI-Engineer-Agentic-AI-cover-letter.pdf`
+- Resume: `Alex-Chen-Senior-Software-Engineer-resume.pdf`
+- Cover letter: `Alex-Chen-Senior-Software-Engineer-cover-letter.pdf`
 
 If `tagline` is generic (e.g. `Software Engineer`), set `output_role` to a distinct label for filenames without changing the visible CV tagline.
 
@@ -241,7 +241,7 @@ Cover-letter markdown uses HTML comment headers only — it does not carry its o
 To commit a submission PDF:
 
 ```bash
-git add -f roles/acme/staff-backend/Daniel-Salter-Staff-Backend-resume.pdf
+git add -f roles/acme/staff-backend/Alex-Chen-Staff-Backend-resume.pdf
 ```
 
 ---
@@ -250,7 +250,7 @@ git add -f roles/acme/staff-backend/Daniel-Salter-Staff-Backend-resume.pdf
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
-| `Run template/setup.sh first` | Missing `pandoc` or `latexmk` | `./template/setup.sh`; check PATH |
+| `Run scripts/setup.sh first` | Missing `pandoc` or `latexmk` | `./scripts/setup.sh`; check PATH |
 | `Missing resume.md` | Wrong role path or no CV yet | Scaffold/tailor via `/resume` |
 | `Missing cover-letter-*.md` | Letter not drafted | Run `/cover-letter` or create markdown |
 | Build up-to-date but wrong PDF content | Stale LaTeX state | `build.sh … --clean` then rebuild |
@@ -264,15 +264,15 @@ git add -f roles/acme/staff-backend/Daniel-Salter-Staff-Backend-resume.pdf
 
 | Path | Role |
 |------|------|
-| `template/build.sh` | Resume build entrypoint |
-| `template/cover-letter-build.sh` | Cover-letter build entrypoint |
-| `template/cover-letter.latex` | Pandoc LaTeX template for letters |
-| `template/check-cover-letter.sh` | Word count (250–350), tiered banned patterns, em dashes |
-| `template/cover-letter-banned-patterns.txt` | Banned pattern source list |
-| `template/output-name.sh` | Submission filename resolver |
-| `template/setup.sh` | One-time TeX/pandoc setup |
-| `template/resume.latex` | Pandoc → AltaCV LaTeX template |
-| `template/job.lua` | Experience → `\cvevent` filter |
-| `template/altacv.cls` | AltaCV document class |
-| `.cursor/skills/resume/workflows/build.md` | Agent: resume build-only workflow |
-| `.cursor/skills/cover-letter/workflows/build.md` | Agent: cover-letter build-only workflow |
+| `scripts/build.sh` | Resume build entrypoint |
+| `scripts/cover-letter-build.sh` | Cover-letter build entrypoint |
+| `render/cover-letter.latex` | Pandoc LaTeX template for letters |
+| `scripts/check-cover-letter.sh` | Word count (250–350), tiered banned patterns, em dashes |
+| `config/cover-letter-banned-patterns.txt` | Banned pattern source list |
+| `scripts/output-name.sh` | Submission filename resolver |
+| `scripts/setup.sh` | One-time TeX/pandoc setup |
+| `render/resume.latex` | Pandoc → AltaCV LaTeX template |
+| `render/job.lua` | Experience → `\cvevent` filter |
+| `render/altacv.cls` | AltaCV document class |
+| `.agents/skills/resume/workflows/build.md` | Agent: resume build-only workflow |
+| `.agents/skills/cover-letter/workflows/build.md` | Agent: cover-letter build-only workflow |
