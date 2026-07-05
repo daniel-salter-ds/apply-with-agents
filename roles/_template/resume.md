@@ -6,14 +6,15 @@ email: you@example.com
 phone: ""
 location: City, Country
 linkedin: "https://linkedin.com/in/your-handle"
-github: "https://github.com/your-handle"
+website: ""   # optional — portfolio or personal site
+github: ""    # optional
 ---
 
 ## Profile
 
 One paragraph tailored to the role.
 
-## Technical Skills
+## Core Competencies
 
 - **Category:** skill, skill, skill
 - **Category:** skill, skill
