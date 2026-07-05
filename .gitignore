@@ -19,8 +19,10 @@ roles/**
 !roles/AGENTS.md
 !roles/CLAUDE.md
 
-# Examples — track markdown; ignore build artefacts
+# Examples — track markdown and e2e submission PDFs; ignore build artefacts
 examples/**/*.pdf
+!examples/e2e/**/*-resume.pdf
+!examples/e2e/**/*-cover-letter.pdf
 examples/**/cover-letter-*.tex
 examples/**/*.tex
 examples/**/*.aux
