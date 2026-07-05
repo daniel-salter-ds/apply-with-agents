@@ -42,6 +42,7 @@ $if(phone)$  \phone{$phone$}$endif$
 $if(location)$  \location{$location$}$endif$
   \par
 $if(linkedin)$  \linkedin{\url{$linkedin$}}$endif$
+$if(website)$  \homepage{\url{$website$}}$endif$
 $if(github)$  \github{\url{$github$}}$endif$
 }
 \begin{fullwidth}

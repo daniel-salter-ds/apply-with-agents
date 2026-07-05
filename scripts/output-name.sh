@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 # Resolve submission PDF filename from resume.md YAML and role directory.
 # Usage: output-name.sh <role-directory> [--cover-letter]
-# Prints: Daniel-Salter-AI-Implementation-Engineer-resume.pdf
-#     or: Daniel-Salter-AI-Implementation-Engineer-cover-letter.pdf
 
 set -euo pipefail
 
-TEMPLATE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# shellcheck source=yaml-fields.sh
-source "$TEMPLATE_DIR/yaml-fields.sh"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/yaml-fields.sh
+source "$SCRIPT_DIR/lib/yaml-fields.sh"
 
 if [[ $# -lt 1 ]]; then
   echo "Usage: $0 <role-directory> [--cover-letter]" >&2

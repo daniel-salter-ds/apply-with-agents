@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TEMPLATE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+RENDER_DIR="$REPO_ROOT/render"
 export PATH="/Library/TeX/texbin:${PATH:-}"
-export TEXINPUTS="$TEMPLATE_DIR:${TEXINPUTS:-}"
+export TEXINPUTS="$RENDER_DIR:${TEXINPUTS:-}"
 
 ROLE_ARG="${1:-}"
 CLEAN=false
@@ -53,7 +55,7 @@ if [[ "$CLEAN" == true ]]; then
 fi
 
 if ! command -v pandoc >/dev/null || ! command -v latexmk >/dev/null; then
-  echo "Run $TEMPLATE_DIR/setup.sh first" >&2
+  echo "Run $SCRIPT_DIR/setup.sh first" >&2
   exit 1
 fi
 
@@ -61,8 +63,8 @@ cd "$ROLE_DIR"
 
 pandoc resume.md \
   -o resume.tex \
-  --template="$TEMPLATE_DIR/resume.latex" \
-  --lua-filter="$TEMPLATE_DIR/job.lua" \
+  --template="$RENDER_DIR/resume.latex" \
+  --lua-filter="$RENDER_DIR/job.lua" \
   --from markdown+yaml_metadata_block+raw_attribute \
   --standalone \
   --shift-heading-level-by=-1
@@ -74,7 +76,7 @@ fi
 
 latexmk -pdf -interaction=nonstopmode -file-line-error resume.tex
 
-OUTPUT_NAME="$("$TEMPLATE_DIR/output-name.sh" "$ROLE_DIR")"
+OUTPUT_NAME="$("$SCRIPT_DIR/output-name.sh" "$ROLE_DIR")"
 OUTPUT_PDF="$ROLE_DIR/$OUTPUT_NAME"
 
 rm -f ./*-resume.pdf 2>/dev/null || true

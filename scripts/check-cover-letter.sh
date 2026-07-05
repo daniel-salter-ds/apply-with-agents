@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # Self-check cover letter markdown: banned patterns, em dashes, word count.
 # Usage: check-cover-letter.sh <role-directory> [--all-variants]
-#
-# Default: checks Selected voice file from notes.md, else all cover-letter-*.md
 
 set -euo pipefail
 
-TEMPLATE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PATTERNS_FILE="$TEMPLATE_DIR/cover-letter-banned-patterns.txt"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PATTERNS_FILE="$REPO_ROOT/config/cover-letter-banned-patterns.txt"
 MAX_EM_DASHES=2
 SOFT_MATCH_THRESHOLD=1
 WORD_MIN=250

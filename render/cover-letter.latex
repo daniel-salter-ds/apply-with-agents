@@ -30,6 +30,7 @@ $if(email)$Email: $email$$endif$
 $if(phone)$ \textbar{} Phone: $phone$$endif$
 $if(location)$ \textbar{} Location: $location$$endif$\par
 $if(linkedin)$LinkedIn: $linkedin$\par$endif$
+$if(website)$Website: $website$\par$endif$
 }
 
 \medskip

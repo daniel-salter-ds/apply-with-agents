@@ -5,7 +5,7 @@
 #   get_yaml_field "$RESUME_MD" name
 #   format_uk_date 2026-06-16
 #   parse_letter_generated_date "$LETTER_MD"
-#   format_linkedin_display "https://linkedin.com/in/dan-salter"
+#   format_linkedin_display "https://linkedin.com/in/alex-chen"
 
 get_yaml_field() {
   local file="$1"
