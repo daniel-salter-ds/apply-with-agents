@@ -1,0 +1,13 @@
+# Default cover letter settings — user can edit voice preferences here.
+word_count:
+  min: 250
+  max: 350
+voices:
+  - professional
+  - conversational
+  - bold
+close_mode: A  # substantive close — interest + logistics + company tie + thanks; no call ask
+sign_off:
+  - Kind regards
+  - Best regards
+salutation_default: Dear Hiring Team

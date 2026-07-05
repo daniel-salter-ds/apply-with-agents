@@ -1,0 +1,3 @@
+# User-editable locale settings — read by skills and roles/AGENTS.md.
+spelling: en-GB
+date_format: uk_long  # e.g. 16 June 2026 — see scripts/lib/yaml-fields.sh format_uk_date

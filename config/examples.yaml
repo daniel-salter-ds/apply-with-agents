@@ -1,0 +1,5 @@
+# Format examples for agent skills — paths filled in PR4.
+format_examples:
+  technical: examples/e2e/software-engineer
+  leadership: examples/e2e/operations-leader
+  default: examples/e2e/software-engineer

@@ -1,0 +1,15 @@
+# Copy to config/profile.yaml during /setup (profile.yaml is gitignored).
+
+candidate:
+  name: Your Name
+  email: you@example.com
+  phone: "07 1234567890"
+  phone_e164: "+4471234567890"
+  home_country: GB
+  home_base: London, UK
+  linkedin: "https://linkedin.com/in/your-handle"
+  website: ""   # optional — portfolio or personal site
+  github: ""    # optional — omit if not relevant
+  apply_internationally: false
+
+setup_complete: false

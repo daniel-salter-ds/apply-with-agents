@@ -1,0 +1,6 @@
+# Default resume tailoring settings — override per role in notes.md if needed.
+pages: 2
+skills_section: "## Core Competencies"
+profile_section: "## Profile"
+experience_section: "## Experience"
+education_section: "## Education & Mentoring"
