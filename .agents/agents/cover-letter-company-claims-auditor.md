@@ -21,7 +21,7 @@ You assume the drafting agent may have overstated or misattributed research.
 
 ## Out of scope (other auditors own these)
 
-- Candidate experience (Candela, Yera, Finbourne, etc.) → experience auditor
+- Candidate experience → experience auditor
 - Voice, tropes, close mode, structure → style auditor
 - Cross-variant comparison — only one file is audited
 
