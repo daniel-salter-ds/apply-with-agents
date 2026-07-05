@@ -1,39 +1,68 @@
 # Apply with agents
 
-Tailor a resume and cover letter for each job application. Paste your experience once; an agent researches each role, drafts markdown, and builds AltaCV PDFs you can submit.
-
-Submission-ready PDFs in a polished AltaCV layout — edited in chat, built locally. 
+Tailor a resume and cover letter for each job application. You keep one experience library; the agent researches the role, drafts markdown, and builds AltaCV PDFs on your machine.
 
 Works with [Cursor](https://cursor.com), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), or any tool that reads [Agent Skills](https://agentskills.io).
 
-## Who this is for
-
-- Job seekers who want a repeatable process, not a one-off ChatGPT prompt
-- People who already use an AI-assisted editor and want structured skills (`/setup`, `/resume`, `/cover-letter`)
-- Anyone who prefers plain-language guidance. You do not need git, LaTeX, or folder layouts; the agent handles those.
-
-A local repo the agent maintains: one folder per application, one experience library, markdown in and PDFs out. Not a drag-and-drop resume site.
-
-## Examples
-
-See [`examples/e2e/`](examples/e2e/) for fictional resume + cover letter examples:
-
 ![Example AltaCV output — fictional profile](docs/images/software-engineer-example.png)
 
-## What you can do
+Fictional examples with PDFs: [`examples/e2e/`](examples/e2e/).
 
-| Goal | Type in agent chat |
-|------|---------------------|
-| First-time setup | **`/setup`** |
-| Resume for a specific job | **`/resume`** (paste the job URL or description) |
-| Cover letter variants | **`/cover-letter`** (after `/resume` for the same role) |
-| Update your experience library | **`/master`** |
+## Contents
+
+- [The problem](#the-problem)
+- [Why not just ChatGPT?](#why-not-just-chatgpt)
+- [Who this is for](#who-this-is-for)
+- [Skills](#skills)
+- [Get started](#get-started)
+- [How it works](#how-it-works)
+- [Documentation](#documentation)
+
+## The problem
+
+If you've used ChatGPT for applications, you probably know the drill. New chat, paste the CV again, ask for a cover letter, copy the output into Word, fight the formatting. The dates in chat three don't quite match chat one. The cover letter could go to any company.
+
+By application five you're doing archaeology on old conversations. You still don't have a PDF you'd happily attach.
+
+## Why not just ChatGPT?
+
+ChatGPT is fine for a one-off. This repo is for people sending several applications who want the same steps (and the same PDF layout) each time.
+
+| | ChatGPT | Apply with agents |
+|---|---------|-------------------|
+| **Output** | Text you paste into a template | AltaCV PDFs from a fixed local build |
+| **Your experience** | Re-paste or re-upload each session | One `master.md` file; each role trims from it |
+| **Facts and claims** | Same model drafts and edits | Claims tied to `master.md`; cover-letter auditors check against your files |
+| **Cover letters** | Generic hooks; stock openers | Company research with sources, you sign off the hook, scripts catch banned phrases |
+| **Later applications** | Earlier chats aren't in the loop | Same skills and folder layout every time |
+| **Setup** | None | Clone once, run **`/setup`** (the agent walks you through PDF tools) |
+
+Quick draft, you'll format and fact-check it yourself? ChatGPT.
+
+Multiple roles, PDFs you can attach, and an experience library that stays put? This repo.
+
+## Who this is for
+
+Job seekers who are tired of reinventing the prompt every time. People already in Cursor or Claude Code who want `/setup`, `/resume`, and `/cover-letter` as actual workflows rather than vibes. You don't need to know git or LaTeX; the agent runs the boring parts.
+
+It's a local repo: one folder per application, one master file for your career facts. If you want a browser-based resume builder, this isn't that.
+
+## Skills
+
+Type these in agent chat. Definitions live in [`.agents/skills/`](.agents/skills/) ([AGENTS.md](AGENTS.md), [CLAUDE.md](CLAUDE.md) for Claude Code).
+
+| Skill | When to use |
+|-------|-------------|
+| **`/setup`** | First run — checks PDF tools, builds **`master.md`** and **`config/profile.yaml`** |
+| **`/resume`** | New job (paste URL or description) or refresh an existing tailored resume |
+| **`/cover-letter`** | After **`/resume`** for the same role — research, letter variants, optional PDF |
+| **`/master`** | Add a role, fix dates, or fill in metrics in your experience library |
 
 Each run produces AltaCV-styled PDFs (`{Name}-{Role}-resume.pdf`) and optional cover letter PDFs. Applications live under `roles/<company>/<role>/`.
 
 ## Get started
 
-More detail: **[SETUP.md](SETUP.md)**.
+Full walkthrough: **[SETUP.md](SETUP.md)**.
 
 1. **Clone and open the repo** in Cursor or Claude Code:
 
@@ -42,38 +71,27 @@ More detail: **[SETUP.md](SETUP.md)**.
    cd apply-with-agents
    ```
 
-2. **Agent handles setup:** type **`/setup`**. The agent checks your machine can build PDFs (and walks you through installing anything missing), then asks for existing resumes, a short search brief, and a short interview. It writes **`master.md`** (your experience library) and **`config/profile.yaml`** (contact details).
+2. **Run setup in chat:** type **`/setup`**. The agent checks whether your machine can build PDFs, helps install anything missing, then asks for existing resumes, a short search brief, and a short interview. It writes **`master.md`** and **`config/profile.yaml`**.
 
-3. **Tailor a resume:** paste a job link, type **`/resume`**. The agent reads the posting, asks tailoring questions, drafts your resume, and builds a PDF.
+3. **Tailor a resume:** paste a job link, type **`/resume`**. The agent reads the posting, asks a few tailoring questions, drafts your resume, and builds a PDF.
 
-4. **Research + tailor a cover letter:** type **`/cover-letter`** for the same application. Review the research summary, pick a voice, get letter variants and an optional PDF.
-
-## Skills
-
-Skills live in [`.agents/skills/`](.agents/skills/). Entry point: [AGENTS.md](AGENTS.md) ([CLAUDE.md](CLAUDE.md) for Claude Code).
-
-| Skill | When |
-|-------|------|
-| `/setup` | First run; missing `master.md` or profile |
-| `/master` | Update your master resume with a missing role, corrected dates, forgotten metrics, etc... |
-| `/resume` | Build tailored resume for a new job via posting URL or text, or refresh an existing resume |
-| `/cover-letter` | Write tailored cover letter after `resume.md` exists for that role |
+4. **Cover letter (optional):** type **`/cover-letter`** for the same application. Review the research summary, pick a voice, get letter variants and an optional PDF.
 
 ## How it works
 
-- **`master.md`**: employers, dates, metrics. Tailored resumes trim from here.
-- **`roles/<company>/<role>/`**: one folder per application (`resume.md`, `job-spec.md`, notes, cover letters). Your applications are gitignored.
-- **`scripts/` + `render/`**: pandoc and AltaCV turn markdown into PDF. The agent runs these.
-- **`config/`**: locale, page defaults, cover-letter limits, banned phrases.
+Your career facts live in **`master.md`**. Each application gets a folder under **`roles/<company>/<role>/`** with the job spec, tailored resume, research notes, and cover letters. That folder is gitignored; the workflow isn't.
 
-Format examples (fictional): [`software-engineer`](examples/e2e/software-engineer/), [`operations-leader`](examples/e2e/operations-leader/).
+Markdown goes through **`scripts/`** and **`render/`** (pandoc + AltaCV) to become PDF. Page count, word limits, banned phrases, and locale sit in **`config/`**. Before a cover letter PDF ships, scripts check word count and phrasing; auditor subagents re-read claims against your files.
 
-## Repository layout
+Fictional worked examples: [`software-engineer`](examples/e2e/software-engineer/), [`operations-leader`](examples/e2e/operations-leader/).
+
+<details>
+<summary><strong>Repository layout</strong></summary>
 
 ```text
 config/                 # shared defaults; profile.yaml is yours (gitignored)
 master.template.md      # skeleton; /setup writes master.md (gitignored)
-examples/e2e/           # synthetic resume + cover letter examples
+examples/e2e/           # synthetic resume + cover letter examples (with PDFs)
 roles/_template/        # scaffold for new applications
 scripts/                # build, setup, checks
 render/                 # AltaCV LaTeX + pandoc templates
@@ -83,9 +101,12 @@ render/                 # AltaCV LaTeX + pandoc templates
 
 Personal files (`master.md`, `config/profile.yaml`, `config/target-role-research.md`, `inputs/`, and `roles/*/` except `_template`) are gitignored.
 
-## Advanced: command line
+</details>
 
-If you use a terminal, the same pipeline is available directly:
+<details>
+<summary><strong>Advanced: command line</strong></summary>
+
+The same pipeline from a terminal:
 
 ```bash
 ./scripts/setup.sh                                    # once per machine
@@ -96,6 +117,8 @@ If you use a terminal, the same pipeline is available directly:
 ```
 
 Details: [BUILD.md](BUILD.md), [DESIGN.md](DESIGN.md).
+
+</details>
 
 ## Documentation
 
