@@ -31,7 +31,7 @@ unless mode B is explicitly chosen.
 
 ## 2. Overused vocabulary
 
-Tiered enforcement via `template/cover-letter-banned-patterns.txt` and
+Tiered enforcement via `config/cover-letter-banned-patterns.txt` and
 `check-cover-letter.sh`:
 
 | Tier | Section | Rule |
@@ -57,7 +57,7 @@ two different mild words or the same word twice — is a signal to rewrite.
 | "Serves as" dodge | "My background serves as a strong foundation for..." | Avoiding a plain "is"/"gave me" in favour of a fancier copula |
 | Superficial -ing tack-on | "...reflecting my commitment to excellence" | An empty participial clause bolted onto a sentence to manufacture significance |
 
-**Fix:** write the way Dan would actually say it out loud to a colleague —
+**Fix:** write the way the candidate would actually say it out loud to a colleague —
 plain subject-verb-object, no rhetorical theatrics.
 
 ## 4. Punctuation and formatting tells
@@ -75,7 +75,7 @@ plain subject-verb-object, no rhetorical theatrics.
 - **Perfectly uniform sentence length and zero contractions.** Flawless,
   unvarying sentence rhythm with no contractions reads as machine-smoothed.
   Real prose has some short sentences, some longer ones, and contractions
-  where Dan would naturally use them ("I'd", "didn't").
+  where the candidate would naturally use them ("I'd", "didn't").
 
 ## 5. Paragraph- and composition-level tells
 
@@ -92,12 +92,12 @@ plain subject-verb-object, no rhetorical theatrics.
   into the ground across every paragraph.
 - **Historical/analogy stacking** — "Just as Stripe simplified payments and
   AWS simplified infrastructure, this role simplifies..." Borrowed
-  authority instead of an actual claim about Dan.
+  authority instead of an actual claim about the candidate.
 - **One-point dilution** — making a single claim and then restating it three
   different ways to sound substantial. Say it once, with the metric, and
   move on.
 - **Vague attribution** — "Industry reports suggest..." with no named
-  source. A cover letter should only ever cite Dan's own
+  source. A cover letter should only ever cite the candidate's own
   research-confirmed facts (see `research.md`), never invented authorities.
 - **Grandiose stakes inflation** — treating an individual contributor role
   as a world-historical mission. Keep the stakes proportionate to an actual
@@ -115,7 +115,7 @@ plain subject-verb-object, no rhetorical theatrics.
 - **"Imagine a world where..."** — futurist invitation rhetoric, wildly out
   of register for a job application.
 - **"Think of it as..." patronizing analogies** — assumes the reader needs
-  a metaphor to understand a straightforward fact about Dan's experience.
+  a metaphor to understand a straightforward fact about the candidate's experience.
 - **False vulnerability** — performative humility or self-deprecation that
   reads as a rhetorical move rather than something genuine.
 - **"The truth is simple" / unearned certainty** — asserting clarity instead
@@ -123,10 +123,10 @@ plain subject-verb-object, no rhetorical theatrics.
 
 ## 7. Self-check heuristics (apply before presenting any draft)
 
-1. Read it aloud. If it sounds like a script rather than something Dan would
+1. Read it aloud. If it sounds like a script rather than something the candidate would
    say in a conversation, rewrite the sentence.
 2. Count em dashes — more than **two** in a ~300-word letter, revise.
-3. Run `./template/check-cover-letter.sh` — word/phrase hits are automatic rewrites.
+3. Run `./scripts/check-cover-letter.sh` — word/phrase hits are automatic rewrites.
 4. Scan for structural tropes in section 3 — if present, rewrite.
 5. Check for back-to-back tricolons or repeated sentence openers (anaphora).
 6. Confirm every sentence-length isn't suspiciously uniform — vary it.

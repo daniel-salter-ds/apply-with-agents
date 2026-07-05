@@ -9,7 +9,7 @@ After `research-summary.md` is written, the agent runs the research auditor
 the recommended checkpoint mode when relevant.
 
 **Gold-standard example:**
-[`roles/ing/senior-ai-engineer-agentic-ai/research-summary.md`](../../../../roles/ing/senior-ai-engineer-agentic-ai/research-summary.md)
+[`examples/e2e/software-engineer/research-summary.md`](../../../../examples/e2e/software-engineer/research-summary.md)
 
 ## Pre-checkpoint sections (required)
 
@@ -44,7 +44,7 @@ For each candidate:
 - One-line summary
 - Primary source link + published date
 - Adequacy note (strong / adequate / weak)
-- Why it maps to Dan's experience from `resume.md`
+- Why it maps to the candidate's experience from `resume.md`
 
 ### Gaps / conflicts / do-not-cite
 
@@ -92,4 +92,4 @@ Likely questions bridging company research ↔ CV experience.
 
 - Full research protocol: [research.md](./research.md)
 - Location close rules: [location.md](./location.md)
-- Audit trail shape: `roles/ing/senior-ai-engineer-agentic-ai/company-research.md`
+- Audit trail shape: `examples/e2e/software-engineer/company-research.md`

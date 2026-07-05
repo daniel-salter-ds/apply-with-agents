@@ -12,7 +12,11 @@ disable-model-invocation: true
 
 Repo-local cover-letter pipeline: deep research → checkpoint → three markdown
 variants in `roles/<company-slug>/<role-slug>/` → optional PDF via
-`template/cover-letter-build.sh`. Requires a tailored CV from `/resume` first.
+`scripts/cover-letter-build.sh`. Requires a tailored CV from `/resume` first.
+
+## Setup gate
+
+If `config/profile.yaml` or `master.md` is missing — route to **`/setup`** first (before `/resume`).
 
 ## When to use
 
@@ -35,14 +39,14 @@ role folder.
 | File | Purpose |
 |------|---------|
 | `master.md` | Canonical experience — fallback for metrics not in trimmed `resume.md` |
-| `roles/ing/senior-ai-engineer-agentic-ai/` | Gold-standard example (research + letters) |
+| `config/examples.yaml` | Format example paths (technical + leadership) |
 | `roles/<company>/<role>/resume.md` | **Hard prerequisite** — tailored CV from `/resume` |
 | `roles/<company>/<role>/job-spec.md` | **Hard prerequisite** — JD from `/resume` |
 | `roles/<company>/<role>/notes.md` | Interview themes, mapping, iteration log, **selected voice** |
 | `roles/<company>/<role>/company-research.md` | Agent audit trail; checkpoint status |
 | `roles/<company>/<role>/research-summary.md` | Human verify + checkpoint input |
 | `roles/<company>/<role>/cover-letter-*.md` | Three voice variants |
-| `.cursor/agents/cover-letter-*.md` | Readonly subagents (research + submission suite) |
+| `.agents/agents/cover-letter-*.md` | Readonly subagents (research + submission suite) |
 | [references/subagents.md](references/subagents.md) | When/how to invoke subagents |
 | `roles/<company>/<role>/submission-audit.md` | Submission gate audit record (post-voice) |
 | [references/research.md](references/research.md) | Deep research protocol |
@@ -50,16 +54,16 @@ role folder.
 | [references/structure-and-voices.md](references/structure-and-voices.md) | Letter shape + three voices |
 | [references/close.md](references/close.md) | Close modes (default: substantive, no call ask) |
 | [references/location.md](references/location.md) | Location close vs resume YAML; mandatory checkpoint |
-| [references/gold-standard.md](references/gold-standard.md) | ING reference folder; sync when rules change |
-| `template/check-cover-letter.sh` | Banned-pattern + em-dash mechanical check |
-| `template/cover-letter-banned-patterns.txt` | Single source for banned grep patterns |
+| [references/gold-standard.md](references/gold-standard.md) | E2e example folders; sync when rules change |
+| `scripts/check-cover-letter.sh` | Banned-pattern + em-dash mechanical check |
+| `config/cover-letter-banned-patterns.txt` | Single source for banned grep patterns |
 | [references/banned-words.md](references/banned-words.md) | Word blacklist + grep self-check |
 | [references/ai-writing-tropes.md](references/ai-writing-tropes.md) | Phrase/structure tropes |
 | [references/verification.md](references/verification.md) | Pre-present + submission checklists |
 | [references/pdf-layout.md](references/pdf-layout.md) | PDF layout and ATS rules (applied at build) |
-| `template/cover-letter-build.sh` | Styled PDF build (`cover-letter.latex`) |
-| `template/cover-letter.latex` | Pandoc LaTeX template for letters |
-| `template/output-name.sh` | Submission filename (`--cover-letter`; voice not in name) |
+| `scripts/cover-letter-build.sh` | Styled PDF build (`render/cover-letter.latex`) |
+| `render/cover-letter.latex` | Pandoc LaTeX template for letters |
+| `scripts/output-name.sh` | Submission filename (`--cover-letter`; voice not in name) |
 
 ## Route to workflow
 
@@ -96,4 +100,4 @@ If intent is ambiguous, ask once then route.
 - [README.md](../../README.md)
 - [DESIGN.md](../../DESIGN.md)
 - [roles/README.md](../../roles/README.md)
-- [`.cursor/skills/resume/SKILL.md`](../resume/SKILL.md) — run **before** cover letter
+- [`.agents/skills/resume/SKILL.md`](../resume/SKILL.md) — run **before** cover letter

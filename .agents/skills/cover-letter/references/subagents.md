@@ -1,7 +1,7 @@
 # Reference: Cover letter subagents
 
 Readonly subagents provide **independent** subjective verification. The parent
-agent spawns them via the Task tool. See `.cursor/agents/cover-letter-*.md`.
+agent spawns them via the Task tool. See `.agents/agents/cover-letter-*.md`.
 
 ## Overview
 
@@ -43,7 +43,7 @@ Read from disk only:
 - roles/<company-slug>/<role-slug>/company-research.md
 - roles/<company-slug>/<role-slug>/research-summary.md
 - roles/<company-slug>/<role-slug>/job-spec.md
-- .cursor/skills/cover-letter/references/research.md
+- .agents/skills/cover-letter/references/research.md
 
 Return the full structured report per your output schema. Do not edit files.
 ```
@@ -63,9 +63,9 @@ Append to `notes.md` → `## Cover letter`:
 ### When
 
 - `Selected voice` recorded in `notes.md`
-- Selected file passes `./template/check-cover-letter.sh <role-dir>` (no
+- Selected file passes `./scripts/check-cover-letter.sh <role-dir>` (no
   `--all-variants`)
-- **Before** `./template/cover-letter-build.sh`
+- **Before** `./scripts/cover-letter-build.sh`
 
 ### Blocking
 
@@ -98,7 +98,7 @@ Do not include parent drafting rationale from this conversation.
 
 - Selected letter
 - `resume.md`, `master.md`, `notes.md` (`**Location close:**`, mapping), `job-spec.md`
-- `.cursor/skills/cover-letter/references/location.md` (dimension E7)
+- `.agents/skills/cover-letter/references/location.md` (dimension E7)
 
 **Style auditor** — read:
 
@@ -158,7 +158,7 @@ Subagent audit skipped (Task tool unavailable) — YYYY-MM-DD
 
 | Change type | Re-run |
 |-------------|--------|
-| Typo, punctuation, thanks wording | `./template/check-cover-letter.sh` only |
+| Typo, punctuation, thanks wording | `./scripts/check-cover-letter.sh` only |
 | Hook or company fact | Research auditor (if sources changed) + **company-claims** |
 | CV bullet, metric, tech claim | **experience** only |
 | Tone, close, structure, voice | **style** only |

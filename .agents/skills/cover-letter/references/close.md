@@ -28,7 +28,7 @@ or company research shows an informal, founder-led process.
 | Type | Example | Default |
 |------|---------|---------|
 | **Gratitude** | "Thank you for considering my application." | **Include** in mode A (one short clause before sign-off) |
-| **Logistics** | "I am in Utrecht and can work hybrid in Amsterdam." | Include when JD-relevant |
+| **Logistics** | "I am based in Amsterdam and can work on site as required." | Include when JD-relevant |
 | **Invitation** | "I'd welcome a conversation", "happy to discuss at your convenience" | **Omit** unless mode B and user opted in |
 | **Directive** | "I'll call you Wednesday" | **Never** |
 

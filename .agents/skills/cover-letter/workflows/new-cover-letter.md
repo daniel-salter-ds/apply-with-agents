@@ -39,7 +39,7 @@ Follow [references/research.md](../references/research.md):
 - Cross-validation for hook facts; prefer recent primary sources
 - Do **not** re-fetch the JD if `job-spec.md` is current
 - Write `company-research.md` (shape: gold standard
-  `roles/ing/senior-ai-engineer-agentic-ai/company-research.md`)
+  `examples/e2e/software-engineer/company-research.md`)
 - Set status: `Checkpoint: pending`
 
 ## 5. Write research-summary.md
@@ -132,7 +132,7 @@ Same factual core; voice differs per spec.
 Run [references/verification.md](../references/verification.md) § Pre-present, and:
 
 ```bash
-./template/check-cover-letter.sh roles/<company-slug>/<role-slug> --all-variants
+./scripts/check-cover-letter.sh roles/<company-slug>/<role-slug> --all-variants
 ```
 
 Skim for obvious failures (hook clearly generic, missing salutation). Do **not**
@@ -177,7 +177,7 @@ Submission audit (step 10b) is required before final PDF for application.
 **Prerequisites:** `Selected voice` in `notes.md`; selected file passes:
 
 ```bash
-./template/check-cover-letter.sh roles/<company-slug>/<role-slug>
+./scripts/check-cover-letter.sh roles/<company-slug>/<role-slug>
 ```
 
 Follow [references/subagents.md](../references/subagents.md) § Phase B.
@@ -201,7 +201,7 @@ Do not run 10b on non-selected variants.
 After submission audit passes (or user approves edits on first selection):
 
 ```bash
-./template/cover-letter-build.sh roles/<company-slug>/<role-slug> <selected-voice>
+./scripts/cover-letter-build.sh roles/<company-slug>/<role-slug> <selected-voice>
 ```
 
 Record each pass in `notes.md` → `## Cover letter iteration` (include

@@ -11,12 +11,12 @@ Layout spec: [references/pdf-layout.md](../references/pdf-layout.md).
 ## Build
 
 ```bash
-./template/cover-letter-build.sh roles/<company-slug>/<role-slug> <voice>
+./scripts/cover-letter-build.sh roles/<company-slug>/<role-slug> <voice>
 ```
 
 Voice: `professional` | `conversational` | `bold`
 
-Run `./template/setup.sh` once per machine if `pandoc` or `pdflatex` is missing.
+Run `./scripts/setup.sh` once per machine if `pandoc` or `pdflatex` is missing.
 
 ## What the build produces
 
@@ -28,7 +28,7 @@ PDF layout order (ATS gut-check): **header → date → salutation → body → 
 | Date | `generated:` HTML comment in letter md, else build date (UK long form) |
 | Body | `cover-letter-<voice>.md` (salutation through sign-off) |
 
-Uses `template/cover-letter.latex` — Lato 11pt, 1 inch margins, no page numbers.
+Uses `render/cover-letter.latex` — Lato 11pt, 1 inch margins, no page numbers.
 Not AltaCV.
 
 ## Output files
@@ -43,7 +43,7 @@ Role label: YAML `output_role` → `tagline` → role directory slug (from sibli
 Preview submission name without building:
 
 ```bash
-./template/output-name.sh roles/<company-slug>/<role-slug> --cover-letter
+./scripts/output-name.sh roles/<company-slug>/<role-slug> --cover-letter
 ```
 
 ## Verify

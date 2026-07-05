@@ -18,7 +18,7 @@ Subagents are **not** used at this stage.
 
 ### Per-variant checks (all three files)
 
-- [ ] Total length 250–350 words — `./template/check-cover-letter.sh --all-variants`
+- [ ] Total length 250–350 words — `./scripts/check-cover-letter.sh --all-variants`
 - [ ] HTML `words:` comment matches script output
 - [ ] Obvious hook failure (clearly generic opener) — parent skim only
 - [ ] Salutation present (`Dear Hiring Team` or named contact)
@@ -77,7 +77,7 @@ Input size alone must be paired with an outcome.
 ### Mechanical (selected file)
 
 ```bash
-./template/check-cover-letter.sh roles/<company-slug>/<role-slug>
+./scripts/check-cover-letter.sh roles/<company-slug>/<role-slug>
 ```
 
 Write `submission-audit.md` after audit passes.
@@ -88,7 +88,7 @@ Write `submission-audit.md` after audit passes.
 
 - [ ] Submission audit passed or skipped (typo-only edit)
 - [ ] `Selected voice` in `notes.md`
-- [ ] `./template/cover-letter-build.sh <role-dir> <voice>` succeeds
+- [ ] `./scripts/cover-letter-build.sh <role-dir> <voice>` succeeds
 - [ ] Submission PDF name matches `output-name.sh --cover-letter`
 - [ ] Header contact fields match sibling `resume.md` YAML
 - [ ] UK long-form date present
@@ -96,5 +96,5 @@ Write `submission-audit.md` after audit passes.
 
 ## Gold-standard sync
 
-When skill rules change, update `roles/ing/senior-ai-engineer-agentic-ai/` —
+When skill rules change, update `examples/e2e/software-engineer/` —
 see [gold-standard.md](./gold-standard.md).

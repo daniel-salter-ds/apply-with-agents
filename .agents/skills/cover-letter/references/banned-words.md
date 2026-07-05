@@ -1,7 +1,7 @@
 # Reference: Banned words and phrases
 
-Mechanical enforcement: **`template/check-cover-letter.sh`** reads
-`template/cover-letter-banned-patterns.txt` (single source of truth).
+Mechanical enforcement: **`scripts/check-cover-letter.sh`** reads
+`config/cover-letter-banned-patterns.txt` (single source of truth).
 
 Structural tropes (tricolons, negative parallelism, etc.) remain in
 [ai-writing-tropes.md](./ai-writing-tropes.md) — manual read-aloud check.
@@ -10,10 +10,10 @@ Structural tropes (tricolons, negative parallelism, etc.) remain in
 
 ```bash
 # Selected voice from notes.md (or all variants if none selected)
-./template/check-cover-letter.sh roles/<company-slug>/<role-slug>
+./scripts/check-cover-letter.sh roles/<company-slug>/<role-slug>
 
 # All three variants (initial draft pass)
-./template/check-cover-letter.sh roles/<company-slug>/<role-slug> --all-variants
+./scripts/check-cover-letter.sh roles/<company-slug>/<role-slug> --all-variants
 ```
 
 Exit 0 = pass. Fix any `FAIL` lines before presenting.
@@ -46,5 +46,5 @@ more soft hits (any combination) fails. Matches [ai-writing-tropes.md](./ai-writ
 
 ## Updating the list
 
-Edit **`template/cover-letter-banned-patterns.txt` only** — use section
+Edit **`config/cover-letter-banned-patterns.txt` only** — use section
 headers `[HARD]`, `[SOFT]`, `[PHRASE]`.

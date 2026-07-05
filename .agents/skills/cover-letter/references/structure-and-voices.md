@@ -114,7 +114,7 @@ Sign-off in markdown — blank line between closing phrase and typed name:
 ```markdown
 Kind regards,
 
-Daniel Salter
+Alex Chen
 ```
 
 ## The three voice variants

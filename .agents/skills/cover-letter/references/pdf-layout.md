@@ -41,9 +41,9 @@ same visual coherence without the parsing risk.
 Mirror the resume's header content and order, in plain text, no icons:
 
 ```
-Daniel Salter
-Email: daniel@example.com   Phone: +31 6 XXXX XXXX   Location: Utrecht, NL
-LinkedIn: linkedin.com/in/danielsalter
+Alex Chen
+Email: alex@example.com   Phone: 06 12345678   Location: Amsterdam, NL
+LinkedIn: linkedin.com/in/alex-chen
 ```
 
 - Name: bold, 14-16pt — slightly larger than body text, matching whatever
@@ -52,7 +52,7 @@ LinkedIn: linkedin.com/in/danielsalter
   visible separator like a pipe `|` or extra spacing — never an icon glyph
   or a table).
 - Pull these fields directly from the role's `resume.md` YAML front matter at
-  **PDF build time** (`template/cover-letter-build.sh`) — never duplicate
+  **PDF build time** (`render/cover-letter-build.sh`) — never duplicate
   them in `cover-letter-*.md`. The letter markdown is **body only**
   (salutation through sign-off); HTML comment metadata is not rendered.
 - Skip a decorative rule/divider line under the header — acceptable on a
@@ -62,7 +62,7 @@ LinkedIn: linkedin.com/in/danielsalter
 ## Date and salutation block
 
 - Date in full written form, not numeric: `16 June 2026` (UK convention,
-  consistent with Dan's UK-facing applications) rather than `6/16/2026` or
+  consistent with UK locale in `config/locale.yaml`) rather than `6/16/2026` or
   `2026-06-16`. Place it below the header with one blank line above and
   below.
 - Skip the full mailing-address block (employer name/street
@@ -76,7 +76,7 @@ LinkedIn: linkedin.com/in/danielsalter
 
 | Property | Value |
 |---|---|
-| Font | Match the resume's body font (Lato, per `template/resume.latex`) where the build tooling allows it; fall back to a standard ATS-safe sans-serif (Calibri, Arial, Helvetica) if Lato isn't reliably available in the simpler pandoc/LaTeX path used for the letter |
+| Font | Match the resume's body font (Lato, per `render/resume.latex`) where the build tooling allows it; fall back to a standard ATS-safe sans-serif (Calibri, Arial, Helvetica) if Lato isn't reliably available in the simpler pandoc/LaTeX path used for the letter |
 | Body size | 11pt (match the resume's body text exactly if known) |
 | Line spacing | Single-spaced within each paragraph; one full blank line between paragraphs — never double-space the whole letter |
 | Color | Body text in black or near-black only. A single subtle accent (e.g. the resume's IFBlue for the name only) is acceptable for visual coherence but optional — never use color in body text or as a substitute for emphasis |
@@ -87,7 +87,7 @@ LinkedIn: linkedin.com/in/danielsalter
 ```
 Kind regards,
 
-Daniel Salter
+Alex Chen
 ```
 
 - One blank line between the closing word and the typed name — no

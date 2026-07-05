@@ -66,7 +66,7 @@ Re-run [references/verification.md](../references/verification.md) §
 Pre-present (selected file) and:
 
 ```bash
-./template/check-cover-letter.sh <role-dir>
+./scripts/check-cover-letter.sh <role-dir>
 ```
 
 ## 6b. Submission audit (when substantive)
@@ -91,7 +91,7 @@ Update `submission-audit.md` after each audited pass. Fix **FAIL** before PDF bu
 After every edit to the selected letter:
 
 ```bash
-./template/cover-letter-build.sh roles/<company-slug>/<role-slug> <selected-voice>
+./scripts/cover-letter-build.sh roles/<company-slug>/<role-slug> <selected-voice>
 ```
 
 Do not leave the submission PDF stale relative to markdown. See [build.md](./build.md).
