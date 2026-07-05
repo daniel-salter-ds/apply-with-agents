@@ -1,15 +1,15 @@
 # Reference: Build verification
 
-Run after `./template/build.sh` (see [workflows/build.md](../workflows/build.md)).
+Run after `./scripts/build.sh` (see [workflows/build.md](../workflows/build.md)).
 
 ## Commands
 
 ```bash
 export PATH="/Library/TeX/texbin:$PATH"
-./template/build.sh roles/<company-slug>/<role-slug> 2>&1 | grep -E "Output written|Wrote"
-./template/output-name.sh roles/<company-slug>/<role-slug>
+./scripts/build.sh roles/<company-slug>/<role-slug> 2>&1 | grep -E "Output written|Wrote"
+./scripts/output-name.sh roles/<company-slug>/<role-slug>
 grep -c '\\cvevent' roles/<company-slug>/<role-slug>/resume.tex
-python3 ./template/check-page-fill.py roles/<company-slug>/<role-slug>
+python3 ./scripts/check-page-fill.py roles/<company-slug>/<role-slug>
 test -f roles/<company-slug>/<role-slug>/resume.pdf && echo OK
 ```
 

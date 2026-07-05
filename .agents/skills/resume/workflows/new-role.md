@@ -5,7 +5,7 @@
 Before any fetch, read, or draft:
 
 1. Confirm **company-slug** and **role-slug**; active path is `roles/<company-slug>/<role-slug>/`
-2. Follow `.cursor/rules/role-application-isolation.mdc` — do not read other `roles/*/` folders
+2. Follow `roles/AGENTS.md` — do not read other `roles/*/` folders
 3. After scaffold, verify `notes.md` **Active application** and `AGENTS.md` match this path
 
 ## 1. Parse request
@@ -22,7 +22,7 @@ Extract company, title, and URL. Propose **company-slug** and **role-slug** sepa
 ## 2. Scaffold
 
 ```bash
-./template/new-role.sh <company-slug> <role-slug> --url "<url>"
+./scripts/new-role.sh <company-slug> <role-slug> --url "<url>"
 ```
 
 Creates `resume.md`, `job-spec.md`, `notes.md`, and `AGENTS.md` under `roles/<company-slug>/<role-slug>/`.
@@ -35,14 +35,14 @@ Follow [references/fetch-job-spec.md](../references/fetch-job-spec.md). Append f
 
 Extract must-haves, keywords, seniority, and tech stack. Write a short summary at top of `job-spec.md` or in `notes.md`.
 
-**Scope:** Overlap and fit notes must name employers and projects from `master.md` only (Yera, Finbourne/Candela, Luminesce, Quantifi, etc.). Never cite other `roles/*/` application folders.
+**Scope:** Overlap and fit notes must name employers and projects from `master.md` only. Never cite other `roles/*/` application folders.
 
 ## 5. Interview user (mandatory before drafting)
 
 1. Profile themes (max 2)?
 2. Which roles or projects from **`master.md`** to emphasise or cut?
 3. Tagline? **Default:** match the job spec title when possible (e.g. `Founding Senior Product Engineer`). Fall back to gold-standard YAML `tagline` only when the spec title is vague or misleading.
-4. **Location (YAML)** for resume header? **Default:** most advantageous for the role (often job city). **Home base** for cover letters? **Default:** from `master.md` (e.g. Utrecht when job is Amsterdam). Record both separately in step 6.
+4. **Location (YAML)** for resume header? **Default:** most advantageous for the role (often job city). **Home base** for cover letters? **Default:** from `config/profile.yaml`. Record both separately in step 6.
 
 Do not draft until user responds.
 
@@ -59,7 +59,7 @@ Write to `notes.md` under `## Interview (agent + user)`:
 - **Location (YAML):** advantageous header city/country for `resume.md`
 - **Home base:** where the candidate actually lives/works from (`master.md`)
 
-These differ when commuting to a nearby job city (e.g. YAML Amsterdam, home base Utrecht). Cover letter workflow uses **Home base** — see [cover-letter references/location.md](../../cover-letter/references/location.md).
+These may differ when commuting to a nearby job city. Cover letter workflow uses **Home base** — see [cover-letter references/location.md](../../cover-letter/references/location.md).
 
 ## 7. Draft `resume.md`
 
@@ -67,7 +67,7 @@ These differ when commuting to a nearby job city (e.g. YAML Amsterdam, home base
 - Facts from `master.md` only — no fabrication; if interview answers add facts, ensure they are in master first ([references/master-sync.md](../references/master-sync.md))
 - Copy YAML contact block from gold-standard role unless user overrides
 - **`location`:** most advantageous for the role (usually job city/country when reasonable); ask if unclear
-- **`phone`:** `07…` for UK-based roles; `+44…` for roles based outside the UK (e.g. `+447906203975`)
+- **`phone`:** `07…` for UK-based roles; `+44…` for roles based outside the UK (e.g. `+4471234567890`)
 - Set `tagline` to the job spec title when possible; optional `output_role` for submission filename when tagline is generic
 - **Profile:** one sentence for *what* built (parenthetical names from master); separate sentence for *where* — no repeated explanations
 - **Sub-sections:** mirror JD architecture when accurate; JD-strongest sub-section first within a role; name internal products from `master.md` in parentheses

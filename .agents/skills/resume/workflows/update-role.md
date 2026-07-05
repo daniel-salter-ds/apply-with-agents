@@ -9,7 +9,7 @@ For `roles/<company-slug>/<role-slug>/`:
 - `notes.md`
 - Current `resume.md`
 
-Follow `.cursor/rules/role-application-isolation.mdc`.
+Follow `roles/AGENTS.md`.
 
 ## 2. Short interview
 

@@ -6,18 +6,18 @@ Use when `resume.md` exists and the user wants a PDF without a tailoring pass.
 
 ```bash
 export PATH="/Library/TeX/texbin:$PATH"
-./template/build.sh roles/<company-slug>/<role-slug>
+./scripts/build.sh roles/<company-slug>/<role-slug>
 ```
 
-Run `./template/setup.sh` once per machine if `latexmk` or `pandoc` is missing.
+Run `./scripts/setup.sh` once per machine if `latexmk` or `pandoc` is missing.
 
 ## Stale build
 
 If PDF content disagrees with `resume.md`:
 
 ```bash
-./template/build.sh roles/<company-slug>/<role-slug> --clean
-./template/build.sh roles/<company-slug>/<role-slug>
+./scripts/build.sh roles/<company-slug>/<role-slug> --clean
+./scripts/build.sh roles/<company-slug>/<role-slug>
 ```
 
 ## Submission PDF naming
@@ -31,14 +31,14 @@ Each build produces:
 
 Role label: YAML `output_role` → `tagline` → role directory slug.
 
-Example: `tagline: Senior Widget Engineer` → `Daniel-Salter-Senior-Widget-Engineer-resume.pdf`
+Example: `tagline: Senior Widget Engineer` → `Alex-Chen-Senior-Widget-Engineer-resume.pdf`
 
 Generic tagline → set `output_role` in YAML for a distinct filename.
 
 Preview without building:
 
 ```bash
-./template/output-name.sh roles/<company-slug>/<role-slug>
+./scripts/output-name.sh roles/<company-slug>/<role-slug>
 ```
 
 ## Verify

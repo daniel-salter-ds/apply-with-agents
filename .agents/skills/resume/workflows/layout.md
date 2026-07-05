@@ -11,7 +11,7 @@ Use when the user specifies a page budget, asks to fill empty space, wants clean
 
 ```bash
 export PATH="/Library/TeX/texbin:$PATH"
-./template/build.sh roles/<company-slug>/<role-slug> 2>&1 | grep "Output written"
+./scripts/build.sh roles/<company-slug>/<role-slug> 2>&1 | grep "Output written"
 # → Output written on resume.pdf (2 pages, …).
 ```
 
@@ -36,10 +36,10 @@ Page count is necessary but not sufficient. A multi-page CV with a sparse last p
 **Quantitative:**
 
 ```bash
-python3 ./template/check-page-fill.py roles/<company-slug>/<role-slug>
+python3 ./scripts/check-page-fill.py roles/<company-slug>/<role-slug>
 ```
 
-Script parses pdftex `Td` positions. Usable height assumes A4 with 1.25 cm top/bottom margins from `template/resume.latex`. **Pass when final page `bottom gap` ≤ 5%.**
+Script parses pdftex `Td` positions. Usable height assumes A4 with 1.25 cm top/bottom margins from `render/resume.latex`. **Pass when final page `bottom gap` ≤ 5%.**
 
 ## Page-break alignment (soft rule)
 
