@@ -20,6 +20,10 @@ Updates **`master.md`** — sole facts source for `/resume` and `/cover-letter`.
 
 Follow [../../references/audience-comms.md](../../references/audience-comms.md).
 
+## Config
+
+Read [../../references/config-contract.md](../../references/config-contract.md).
+
 ## Route to workflow
 
 | User intent | Read |

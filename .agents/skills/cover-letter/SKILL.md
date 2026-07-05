@@ -22,6 +22,10 @@ If `config/profile.yaml` or `master.md` is missing — route to **`/setup`** fir
 
 Follow [../../references/audience-comms.md](../../references/audience-comms.md).
 
+## Config
+
+Read [../../references/config-contract.md](../../references/config-contract.md). Load **`config/cover-letter.defaults.yaml`** (word count, voices, salutation, close mode) and **`config/locale.yaml`** before drafting.
+
 ## When to use
 
 - User invokes **`/cover-letter`** for an existing role folder
@@ -83,11 +87,13 @@ If intent is ambiguous, ask once then route.
 
 ## Defaults
 
-- **Variants:** professional, conversational, bold (same factual core)
-- **Length:** 250–350 words; three-paragraph skeleton
-- **Salutation:** `Dear Hiring Team` unless research finds a named contact
-- **Sign-off:** `Kind regards` / `Best regards`
-- **Close:** mode A by default — interest + logistics + company tie + **brief thanks**; no call ask ([close.md](references/close.md))
+Read **`config/cover-letter.defaults.yaml`** ([config-contract.md](../../references/config-contract.md)) — do not hardcode:
+
+- **Variants:** `voices` list (same factual core across variants)
+- **Length:** `word_count.min`–`word_count.max`; three-paragraph skeleton
+- **Salutation:** `salutation_default` unless research finds a named contact
+- **Sign-off:** first entry in `sign_off` unless voice rules say otherwise
+- **Close:** `close_mode` (default A) — interest + logistics + company tie + **brief thanks**; no call ask ([close.md](references/close.md))
 - **Research budget:** 8–15 search/fetch calls
 - **Checkpoints:** hook confirm (step 6) and **location close** confirm (step 6c) — both blocking before drafting; see [location.md](references/location.md)
 - **Location close:** user-confirmed sentence in `notes.md`; never copy resume YAML `location` without approval

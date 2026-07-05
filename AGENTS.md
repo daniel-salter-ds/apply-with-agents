@@ -25,7 +25,7 @@ unless the user is clearly technical.
 
 ## User-configurable settings
 
-All editable preferences live in **`config/`** — profile, locale, resume defaults, cover-letter defaults, banned patterns. See `config/profile.example.yaml`.
+All editable preferences live in **`config/`** — see [`.agents/references/config-contract.md`](.agents/references/config-contract.md). Profile stub: `config/profile.example.yaml`.
 
 ## Skills
 

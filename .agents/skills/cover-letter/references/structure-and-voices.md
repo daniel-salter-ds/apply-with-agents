@@ -11,7 +11,7 @@ rhythm, and risk tolerance, not the skeleton.
 
 | Property | Target |
 |---|---|
-| Length | 250-350 words total, one page |
+| Length | `word_count.min`–`word_count.max` from `config/cover-letter.defaults.yaml`; one page |
 | Paragraphs | 3 (4 only for senior/staff-level roles, and only if paragraph 4 adds genuinely new proof rather than restating) |
 | Salutation | Named person if findable in research; otherwise "Dear Hiring Team"; "Dear Hiring Manager" only as a last resort |
 | Sign-off | "Kind regards" / "Best regards" works across nearly all registers — default to it unless a voice calls for something else (see below) |
@@ -139,7 +139,7 @@ should differ.
 
 ## Quick checklist before presenting a draft
 
-- [ ] Total length 250-350 words
+- [ ] Total length within `config/cover-letter.defaults.yaml` → `word_count`
 - [ ] Hook fails the "could be pasted elsewhere" test — i.e. it's specific
 - [ ] Hook traces to a confirmed `company-research.md` fact or `resume.md`
   achievement

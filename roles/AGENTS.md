@@ -26,7 +26,8 @@ Ignore git status and recently viewed files referencing other application paths 
 
 When editing `resume.md` in this folder, follow **`config/resume-format.md`**.
 
-- Skills section heading: read from `config/resume.defaults.yaml` → `skills_section`
+- **Page budget:** `config/resume.defaults.yaml` → `pages` (override in `notes.md` if needed)
+- **Section headings:** `config/resume.defaults.yaml` → `profile_section`, `skills_section`, `experience_section`, `education_section`
 - Build: `./scripts/build.sh <this-folder>`
 - Do not edit `render/` unless explicitly requested
 

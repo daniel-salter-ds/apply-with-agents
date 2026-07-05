@@ -35,6 +35,10 @@ If `config/profile.yaml` or `master.md` is missing, or `setup_complete` is not t
 Follow [../../references/audience-comms.md](../../references/audience-comms.md). Read
 `audience.technical_level` from profile; default **`non_technical`** when missing.
 
+## Config
+
+Read [../../references/config-contract.md](../../references/config-contract.md). Before tailoring or layout work, load **`config/resume.defaults.yaml`** (`pages`, section headings) and **`config/locale.yaml`**. Per-role page override in `notes.md` beats config.
+
 ## Application scope (mandatory)
 
 Each chat is for **one** role folder. Enforced by `roles/AGENTS.md` and per-role `AGENTS.md`.
@@ -75,7 +79,7 @@ If intent is ambiguous, ask once then route.
 ## Defaults
 
 - **Tagline:** match the job spec title when possible
-- **Length:** two pages unless the user says otherwise
+- **Length:** `pages` from `config/resume.defaults.yaml` unless `notes.md` or the user specifies otherwise
 - **`location`:** most advantageous for the role (usually job city/country when reasonable); ask if unclear. Record separately from **home base** in `notes.md` — YAML location is for the CV header; cover letters use home base ([cover-letter references/location.md](../cover-letter/references/location.md))
 - **Phone (YAML):** copy from `config/profile.yaml` — see `config/phone-display.md`
 - **Omissions:** agent judgement from `master.md` — do not ask what to avoid claiming

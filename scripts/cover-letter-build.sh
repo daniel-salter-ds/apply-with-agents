@@ -7,23 +7,31 @@ RENDER_DIR="$REPO_ROOT/render"
 export PATH="/Library/TeX/texbin:${PATH:-}"
 # shellcheck source=lib/yaml-fields.sh
 source "$SCRIPT_DIR/lib/yaml-fields.sh"
+# shellcheck source=lib/config-read.sh
+source "$SCRIPT_DIR/lib/config-read.sh"
 
 ROLE_ARG="${1:-}"
 VOICE="${2:-}"
 
 if [[ -z "$ROLE_ARG" || -z "$VOICE" ]]; then
   echo "Usage: $0 <role-directory> <voice>" >&2
-  echo "  voice: professional | conversational | bold" >&2
+  echo "  voice: $(config_cover_letter_voices | tr '\n' ' ')" >&2
   exit 1
 fi
 
-case "$VOICE" in
-  professional|conversational|bold) ;;
-  *)
-    echo "Unknown voice: $VOICE (expected professional, conversational, or bold)" >&2
-    exit 1
-    ;;
-esac
+voice_allowed=false
+while IFS= read -r allowed; do
+  [[ -z "$allowed" ]] && continue
+  if [[ "$VOICE" == "$allowed" ]]; then
+    voice_allowed=true
+    break
+  fi
+done < <(config_cover_letter_voices)
+
+if [[ "$voice_allowed" != true ]]; then
+  echo "Unknown voice: $VOICE (expected one of: $(config_cover_letter_voices | tr '\n' ' '))" >&2
+  exit 1
+fi
 
 if ! command -v pandoc >/dev/null || ! command -v pdflatex >/dev/null; then
   echo "Run $SCRIPT_DIR/setup.sh first" >&2

@@ -18,7 +18,7 @@ Subagents are **not** used at this stage.
 
 ### Per-variant checks (all three files)
 
-- [ ] Total length 250–350 words — `./scripts/check-cover-letter.sh --all-variants`
+- [ ] Total length within `config/cover-letter.defaults.yaml` → `word_count` — `./scripts/check-cover-letter.sh --all-variants`
 - [ ] HTML `words:` comment matches script output
 - [ ] Obvious hook failure (clearly generic opener) — parent skim only
 - [ ] Salutation present (`Dear Hiring Team` or named contact)

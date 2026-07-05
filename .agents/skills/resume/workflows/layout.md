@@ -2,6 +2,8 @@
 
 Use when the user specifies a page budget, asks to fill empty space, wants cleaner page breaks, or after first build when a multi-page CV looks sparse or splits awkwardly.
 
+**Page target:** `config/resume.defaults.yaml` → `pages`, unless `notes.md` **Page budget** or the user overrides.
+
 ## Two-phase workflow
 
 1. Hit page count target

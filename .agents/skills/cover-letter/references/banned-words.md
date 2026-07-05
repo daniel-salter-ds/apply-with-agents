@@ -22,7 +22,7 @@ Checks performed:
 
 | Check | Rule |
 |-------|------|
-| Word count | 250–350 words (comment-stripped body); warns if HTML `words:` comment stale |
+| Word count | `word_count.min`–`word_count.max` in `config/cover-letter.defaults.yaml` (enforced by script); warns if HTML `words:` comment stale |
 | Hard patterns | `[HARD]` + `[PHRASE]` — any match fails |
 | Soft patterns | `[SOFT]` — **one** hit total OK; **two or more** hits fail |
 | Em dashes | ≤2 |

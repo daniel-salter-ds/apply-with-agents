@@ -6,11 +6,13 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+# shellcheck source=lib/config-read.sh
+source "$SCRIPT_DIR/lib/config-read.sh"
 PATTERNS_FILE="$REPO_ROOT/config/cover-letter-banned-patterns.txt"
 MAX_EM_DASHES=2
 SOFT_MATCH_THRESHOLD=1
-WORD_MIN=250
-WORD_MAX=350
+WORD_MIN="$(config_cover_letter_word_min)"
+WORD_MAX="$(config_cover_letter_word_max)"
 
 if [[ $# -lt 1 ]]; then
   echo "Usage: $0 <role-directory> [--all-variants]" >&2

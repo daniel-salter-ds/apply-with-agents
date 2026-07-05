@@ -15,10 +15,12 @@ Optional: `output_role`, `linkedin`, `website`, `github` (at least one professio
 
 ## Sections
 
-- Profile: `config/resume.defaults.yaml` → `profile_section`
-- Skills: `config/resume.defaults.yaml` → `skills_section` — bullet list, one `- **Category:**` line per group
-- Experience: job-line format below
-- Education: plain markdown — not job-line format
+Read headings from `config/resume.defaults.yaml`:
+
+- Profile → `profile_section`
+- Skills → `skills_section` (bullet list, one `- **Category:**` line per group)
+- Experience → `experience_section` (job-line format below)
+- Education → `education_section` (plain markdown — not job-line format)
 
 ## Job entries
 

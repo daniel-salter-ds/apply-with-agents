@@ -2,6 +2,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEMPLATE_ROLE="$REPO_ROOT/roles/_template"
 
 usage() {
@@ -83,6 +84,18 @@ fi
 mkdir -p "$ROLE_DIR"
 cp "$TEMPLATE_ROLE/resume.md" "$ROLE_DIR/resume.md"
 
+# shellcheck source=lib/config-read.sh
+source "$SCRIPT_DIR/lib/config-read.sh"
+apply_section_heading() {
+  local from="$1" to="$2" file="$3"
+  [[ "$from" == "$to" ]] && return 0
+  sed -i '' "s|^${from}|${to}|" "$file" 2>/dev/null || sed -i "s|^${from}|${to}|" "$file"
+}
+apply_section_heading "## Profile" "$(config_resume_section profile_section "## Profile")" "$ROLE_DIR/resume.md"
+apply_section_heading "## Core Competencies" "$(config_resume_section skills_section "## Core Competencies")" "$ROLE_DIR/resume.md"
+apply_section_heading "## Experience" "$(config_resume_section experience_section "## Experience")" "$ROLE_DIR/resume.md"
+apply_section_heading "## Education & Mentoring" "$(config_resume_section education_section "## Education & Mentoring")" "$ROLE_DIR/resume.md"
+
 CAPTURED="$(date +%Y-%m-%d)"
 
 if [[ -n "$URL" ]]; then
@@ -124,6 +137,7 @@ cat > "$ROLE_DIR/notes.md" <<EOF
 - Tagline tweak:
 - Location (YAML):
 - Home base:
+- Page budget: $(config_resume_pages)  # from config/resume.defaults.yaml; override if user asks
 
 ## Decisions
 

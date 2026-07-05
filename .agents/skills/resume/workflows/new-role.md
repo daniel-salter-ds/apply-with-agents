@@ -48,7 +48,7 @@ Do not draft until user responds.
 
 **Agent defaults (do not ask unless user overrides):**
 
-- **Length:** two pages
+- **Length:** `pages` from `config/resume.defaults.yaml` (see [config-contract.md](../../../references/config-contract.md)); per-role override in `notes.md`
 - **Omissions / de-emphasis:** use judgement from `master.md` and the JD — trim low-relevance content without asking
 - **Master sync:** if the user states facts missing from `master.md`, update master first — treat user statements as correct ([references/master-sync.md](../references/master-sync.md))
 
@@ -69,13 +69,14 @@ These may differ when commuting to a nearby job city. Cover letter workflow uses
 - **`location`:** most advantageous for the role (usually job city/country when reasonable); ask if unclear
 - **`phone`:** `07…` for UK-based roles; `+44…` for roles based outside the UK (e.g. `+4471234567890`)
 - Set `tagline` to the job spec title when possible; optional `output_role` for submission filename when tagline is generic
+- **Section headings:** use `profile_section`, `skills_section`, `experience_section`, `education_section` from `config/resume.defaults.yaml`
 - **Profile:** one sentence for *what* built (parenthetical names from master); separate sentence for *where* — no repeated explanations
 - **Sub-sections:** mirror JD architecture when accurate; JD-strongest sub-section first within a role; name internal products from `master.md` in parentheses
 - **Terminology:** distinguish product vs framework vs pipeline — match `master.md`, not JD copy alone
 - **Technical Skills:** bullet list — one `- **Category:**` line per group; tailor categories to the JD
 Markdown format: glob rule on `roles/**/resume.md` + altacv `00-CONTEXT.md`.
 
-**Default page budget:** two pages unless the user specifies otherwise.
+**Default page budget:** read `config/resume.defaults.yaml` → `pages`; honour `notes.md` **Page budget** if set.
 
 **Workflow anti-patterns:**
 
@@ -93,7 +94,7 @@ Follow [references/verification.md](../references/verification.md).
 
 ## 10. Layout pass (after first draft)
 
-Read [layout.md](./layout.md). Check page count (default budget: two pages), final-page bottom gap (≤ 5%), and page-break alignment. **Ask the user whether the layout looks OK** before iterating further. Record layout decisions in `notes.md`.
+Read [layout.md](./layout.md). Check page count against `config/resume.defaults.yaml` → `pages` (or `notes.md` override), final-page bottom gap (≤ 5%), and page-break alignment. **Ask the user whether the layout looks OK** before iterating further. Record layout decisions in `notes.md`.
 
 ## 11. Offer iteration
 

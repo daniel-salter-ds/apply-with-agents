@@ -20,7 +20,7 @@ Page count comes from the `Output written on resume.pdf (N pages, …)` line. Su
 - [ ] Submission PDF exists
 - [ ] `resume.pdf` LaTeX artefact exists
 - [ ] `cvevent` count ≥ number of Experience job headers in `resume.md`
-- [ ] Page count matches budget (default two pages; user override if set)
+- [ ] Page count matches budget (`config/resume.defaults.yaml` → `pages`, or `notes.md` override)
 - [ ] Final page bottom gap ≤ 5% (`check-page-fill.py` — not a fill-percentage target)
 - [ ] No orphaned job headers (title on one page, dates on the next) — read PDF
 - [ ] Layout pass deferred to post-draft step — see [workflows/layout.md](../workflows/layout.md); confirm with user before iterating

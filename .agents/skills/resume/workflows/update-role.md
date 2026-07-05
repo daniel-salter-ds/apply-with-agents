@@ -34,7 +34,7 @@ Follow [references/verification.md](../references/verification.md).
 
 ## 6. Layout pass (after build)
 
-Follow [layout.md](./layout.md). Check page count (default: two pages), final-page bottom gap (≤ 5%), and breaks; ask the user whether the layout looks OK before iterating.
+Follow [layout.md](./layout.md). Check page count against `config/resume.defaults.yaml` → `pages` (or `notes.md` override), final-page bottom gap (≤ 5%), and breaks; ask the user whether the layout looks OK before iterating.
 
 ## 7. Offer iteration
 
